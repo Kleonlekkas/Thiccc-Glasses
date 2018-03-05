@@ -1,9 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ANoteScript : MonoBehaviour {
-    public GameObject cube;
+    public GameObject myPrefab;
     public int size;
     public List<GameObject> arrayOfCubes;
     int y;
@@ -13,6 +14,9 @@ public class ANoteScript : MonoBehaviour {
 	void Start () {
         y = 10;
         beenPressed = false;
+
+        arrayOfCubes = new List<GameObject>();
+
         spawnCopy();
 	}
 	
@@ -26,7 +30,7 @@ public class ANoteScript : MonoBehaviour {
                 //transform.localScale += new Vector3(0, 1.0f, 0);
                // this.transform.position += new Vector3(0, 1.0f, 0);
                 beenPressed = true;
-                cube.transform.position+=new Vector3(1.0f,1.0f,0.0f);
+                moveCubes(1);
             }
 
         }
@@ -46,9 +50,16 @@ public class ANoteScript : MonoBehaviour {
         //GameObject newCube = (GameObject)Instantiate(cube, new Vector3(0, 5.0f, 0), transform.rotation);
         //Instantiate(newCube, new Vector3(0, 5.0f, 0));
 
-        for (int i = 0; i < size;i++)
+        for (int i = 0; i < size; i++)
         {
-            arrayOfCubes.Add((GameObject)Instantiate(cube, new Vector3(0, 0.0f, 0), transform.rotation));
+            Debug.Log("cube added");
+            //arrayOfCubes.Add((GameObject)Instantiate(cube, new Vector3(0, 0.0f, 0), transform.rotation));
+            //arrayOfCubes.Add(Instantiate(myPrefab, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity));
+
+            //Instantiate(myPrefab, new Vector3(0.0f * i, 0.0f, 0.0f), Quaternion.identity);
+
+            //dis part dun work
+            //GameObject myObj = Instantiate(myPrefab, new Vector3(0.0f * i, 0.0f, 0.0f), Quaternion.identity);
         }
     }
 

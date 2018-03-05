@@ -144,8 +144,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca03ca93de98f98458ad454dc87c45ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cube: {fileID: 262624592}
-  size: 0
+  myPrefab: {fileID: 262624592}
+  size: 10
   arrayOfCubes: []
 --- !u!114 &262624594
 MonoBehaviour:
@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca03ca93de98f98458ad454dc87c45ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cube: {fileID: 0}
+  myPrefab: {fileID: 0}
   size: 0
   arrayOfCubes: []
 --- !u!23 &262624595
