@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour {
 
-    public Transform Followplatform;
+    public Transform Camera;
     public Transform Player;
 
     int cameraOffset;
-
+    float m_FieldOfView;
     private void Start()
     {
         cameraOffset = 7;
+        m_FieldOfView = 7.0f;
     }
     void Update()
     {
-        Followplatform.position = new Vector3((Player.position.x + cameraOffset), Followplatform.position.y, Followplatform.position.z);
+        Camera.position = new Vector3((Player.position.x + cameraOffset), Camera.position.y, Camera.position.z);
     }
 
 }
