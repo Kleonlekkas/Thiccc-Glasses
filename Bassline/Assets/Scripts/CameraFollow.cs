@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour {
 
-    public Transform Camera;
+    public Transform CameraObj;
     public Transform Player;
 
     int cameraOffset;
@@ -16,7 +16,26 @@ public class CameraFollow : MonoBehaviour {
     }
     void Update()
     {
-        Camera.position = new Vector3((Player.position.x + cameraOffset), Camera.position.y, Camera.position.z);
+		//for testing purposes to see it all
+
+
+			m_FieldOfView = Player.position.y;
+		
+
+
+		CameraObj.position = new Vector3((Player.position.x + cameraOffset), Player.position.y, CameraObj.position.z);
+
+
+
+
+		//Set camera field of view based on players y
+		//(Camera is a keyword, had to change to CameraObj)
+
+		//Set a tiny cap
+		if (m_FieldOfView > 10) {
+			Camera.main.orthographicSize = m_FieldOfView;
+		}
+
     }
 
 }

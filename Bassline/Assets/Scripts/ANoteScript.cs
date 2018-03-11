@@ -10,11 +10,13 @@ public class ANoteScript : MonoBehaviour
     public float maxScale; //maximum size the bar can scale to
     public float scaleFactor; //how much the bar scales by per second
 	private AudioSource audio; // our note from editor
+	private GameObject player; // reference to our player
 
 	// Use this for initialization
 	void Start ()
     {
 		audio = GetComponent<AudioSource>();
+		player = GameObject.FindWithTag ("Player");
 	}
 	
 	// Update is called once per frame
@@ -68,6 +70,35 @@ public class ANoteScript : MonoBehaviour
 		}
     }//end update method
 
+
+	//if the ball comes into contact with the bar, send it up
+	void OnCollisionEnter2D(Collision2D c) {
+
+		//dampen it a bit
+		float force = scaleFactor * 0.2f;
+		print ("we in it boys");
+
+		//If we hit the player
+		if (c.gameObject.tag == "Player") {
+			if (isActive) {
+				/*
+				//if Circlular
+				Vector2 dir = c.contacts[0].point - transform.position;
+				//we then get the opposite (-Vector2) and normalize it
+				dir = -dir.normalized;
+				*/
+
+				//then we add the force in the dir * the force
+				//but for now, we'll send it up
+				Vector2 bigUps = new Vector2(0, force);
+
+				player.GetComponent<Rigidbody2D> ().AddForce (bigUps, ForceMode2D.Impulse);
+
+				print ("we in it boys");
+			}
+
+		}//end collision method
+	}
 
 
 }
