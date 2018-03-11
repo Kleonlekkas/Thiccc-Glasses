@@ -9,11 +9,12 @@ public class ANoteScript : MonoBehaviour
     public string activeKey; //str containing the key that will expand the bar if active
     public float maxScale; //maximum size the bar can scale to
     public float scaleFactor; //how much the bar scales by per second
+	private AudioSource audio; // our note from editor
 
 	// Use this for initialization
 	void Start ()
     {
-
+		audio = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -56,7 +57,16 @@ public class ANoteScript : MonoBehaviour
         {
 
         }
-    }
+
+		//only once while its pressed, otherwise the player will hurt their ears like this programmer did
+		if (Input.GetKeyDown(activeKey)) {
+			//play the note the first time the user presses 
+			audio.Play ();
+		} else {
+			//Sounds better if it doesn't stop. whole note plays, and its a short audio clip anyway
+			//audio.Stop ();
+		}
+    }//end update method
 
 
 
