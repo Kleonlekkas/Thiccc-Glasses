@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class moveBall : MonoBehaviour {
 
-    public float thrust;
+    // LERP
+    float t;
+    public Vector2 startPosition;
+    public Vector2 target;
+    public float timeToReachTarget;
+
+    //public float speed;
+	
+    // Thrust Physics
+	public float thrust;
     public Rigidbody2D rb;
-
-	// Use this for initialization
-	void Start () {
-        rb = GetComponent<Rigidbody2D>();
-	}
-
-    void FixedUpdate()
+	
+    void Start()
+    {
+		rb = GetComponent<Rigidbody2D>();
+		
+        // LERP Init
+        startPosition = transform.position;
+    }
+	
+	void FixedUpdate()
     {
         Vector2 myThrust = new Vector2(thrust, 0);
 
@@ -20,9 +32,17 @@ public class moveBall : MonoBehaviour {
             rb.AddForce(myThrust, ForceMode2D.Force);
         }
     }
+	
+    void Update()
+    {
+        // LERP Calc
+        t += Time.deltaTime / timeToReachTarget;
 
-    // Update is called once per frame
-    void Update () {
-        //transform.Translate(new Vector2(0.1f,0.0f));
-	}
+        // LERP on X Axis
+        transform.position = Vector2.Lerp(
+            new Vector2(startPosition.x, transform.position.y),
+            new Vector2(target.x, transform.position.y), t);
+
+        //transform.Translate(Vector2.right * Time.deltaTime * speed);
+    }
 }

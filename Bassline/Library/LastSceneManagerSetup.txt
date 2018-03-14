@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_BasslineScene.unity
+- path: Assets/_BasslineAudioTest.unity
   isLoaded: 1
   isActive: 1

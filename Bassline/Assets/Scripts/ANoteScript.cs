@@ -28,30 +28,30 @@ public class ANoteScript : MonoBehaviour
             {
                 //increase scale and transform position to make it appear the bar is rising
                 transform.localScale += new Vector3(0, scaleFactor * Time.deltaTime, 0);
-                this.transform.position += new Vector3(0, scaleFactor / 2 * Time.deltaTime, 0);
+                transform.position += new Vector3(0, scaleFactor / 2 * Time.deltaTime, 0);
 
                 //don't let it get too large
-                if (this.transform.localScale.y > maxScale)
+                if (transform.localScale.y > maxScale)
                 {
-                    this.transform.localScale = new Vector3(1, maxScale, 1);
+                    transform.localScale = new Vector3(transform.localScale.x, maxScale, 1);
                 }
                 //or high
-                if (this.transform.position.y > (maxScale - 1) / 2)
+                if (transform.position.y > (maxScale - 1) / 2)
                 {
-                    this.transform.position = new Vector3(this.transform.position.x, (maxScale - 1) / 2, this.transform.position.z);
+                    transform.position = new Vector3(transform.position.x, (maxScale - 1) / 2, transform.position.z);
                 }
             }
             else
             {
                 transform.localScale += new Vector3(0, -scaleFactor * Time.deltaTime, 0);
-                this.transform.position += new Vector3(0, -scaleFactor / 2 * Time.deltaTime, 0);
-                if (this.transform.localScale.y < 1)
+                transform.position += new Vector3(0, -scaleFactor / 2 * Time.deltaTime, 0);
+                if (transform.localScale.y < 1)
                 {
-                    this.transform.localScale = new Vector3(1, 1, 1);
+                    transform.localScale = new Vector3(transform.localScale.x, 1, 1);
                 }
-                if (this.transform.position.y < 0)
+                if (transform.position.y < 0)
                 {
-                    this.transform.position = new Vector3(this.transform.position.x, 0, this.transform.position.z);
+                    transform.position = new Vector3(transform.position.x, 0, transform.position.z);
                 }
             }
         }
