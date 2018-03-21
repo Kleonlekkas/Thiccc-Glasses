@@ -8,7 +8,9 @@ public class moveBall : MonoBehaviour {
     float t;
     public Vector2 startPosition;
     public Vector2 target;
-    public float timeToReachTarget;
+    public float timeToReachTarget; //was 28.5 seconds- playing with it to adjust speed for feel reasons
+
+    private bool flag; //temp flag for delaying start of level until button press
 
     //public float speed;
 	
@@ -22,6 +24,8 @@ public class moveBall : MonoBehaviour {
 		
         // LERP Init
         startPosition = transform.position;
+
+        flag = false; //temp flag for delaying start of level until button press
     }
 	
 	void FixedUpdate()
@@ -35,14 +39,22 @@ public class moveBall : MonoBehaviour {
 	
     void Update()
     {
-        // LERP Calc
-        t += Time.deltaTime / timeToReachTarget;
+        if(!flag && Input.GetKeyDown("space"))
+        {
+            flag = true;
+        }
 
-        // LERP on X Axis
-        transform.position = Vector2.Lerp(
-            new Vector2(startPosition.x, transform.position.y),
-            new Vector2(target.x, transform.position.y), t);
+        if(flag) //only activate thrusters if we're live
+        {
+            // LERP Calc
+            t += Time.deltaTime / timeToReachTarget;
 
-        //transform.Translate(Vector2.right * Time.deltaTime * speed);
+            // LERP on X Axis
+            transform.position = Vector2.Lerp(
+                new Vector2(startPosition.x, transform.position.y),
+                new Vector2(target.x, transform.position.y), t);
+
+            //transform.Translate(Vector2.right * Time.deltaTime * speed);
+        }
     }
 }
