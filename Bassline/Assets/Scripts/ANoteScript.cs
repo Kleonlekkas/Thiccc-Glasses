@@ -12,6 +12,8 @@ public class ANoteScript : MonoBehaviour
 	private AudioSource audio; // our note from editor
 	private GameObject player; // reference to our player
 
+    public Transform barPrefab; // set up generation of bars
+
     System.Random rand;
 
     //Collision
@@ -27,19 +29,26 @@ public class ANoteScript : MonoBehaviour
     {
 		audio = GetComponent<AudioSource>();
 		player = GameObject.FindWithTag ("Player");
-
+        
         pRadius = player.transform.localScale.x / 2;
-        barWidth = this.transform.localScale.x;
-        barHeight = this.transform.localScale.y;
+        barWidth = transform.localScale.x;
+        barHeight = transform.localScale.y;
 
-        barPos = this.transform.position;
+        barPos = transform.position;
         pPos = player.transform.position;
 
         rand = new System.Random();
 
         //maxScale = rand.Next(1, 6);
         //transform.localScale = new Vector3(0, rand.Next(1, 3), 0);
-	}
+
+        //Automatically Generate Bar Prefabs
+        for (int i = 1; i < 50; i++)
+        {
+            Instantiate(barPrefab, new Vector3(i * 200.0F, 0, 0), Quaternion.identity);
+        }
+
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -85,10 +94,6 @@ public class ANoteScript : MonoBehaviour
                 }
             }
         }
-        else
-        {
-
-        }
 
 		//only once while its pressed, otherwise the player will hurt their ears like this programmer did
 		if (Input.GetKeyDown(activeKey)) {
@@ -104,77 +109,28 @@ public class ANoteScript : MonoBehaviour
     }//end update method
 
 
-	//if the ball comes into contact with the bar, send it up
-	/* void OnCollisionEnter2D(Collision2D c) {
-
-		//dampen it a bit
-		float force = scaleFactor * 0.2f;
-
-		//If we hit the player
-		if (c.gameObject.tag == "Player") {
-            if (Input.GetKey(activeKey)) {
-				
-				//if Circlular
-				Vector2 dir = c.contacts[0].point - transform.position;
-				//we then get the opposite (-Vector2) and normalize it
-				dir = -dir.normalized;
-				
-
-				//then we add the force in the dir * the force
-				//but for now, we'll send it up
-				Vector2 bigUps = new Vector2(0, force);
-
-				c.gameObject.GetComponent<Rigidbody2D> ().AddForce (bigUps, ForceMode2D.Impulse);
-
-                print("we in it boys");
-            }
-
-		}
-    }//end collision method
-*/
-
-
-    bool ourCollision()
+    void ourCollision()
     {
         pPos = player.transform.position;
-        float distance = ( Vector3.Distance(pPos, barPos));
+        float distance = ( Vector2.Distance(pPos, barPos));
 
-        if (distance < (pRadius + barHeight/2))
+        // collision logic not working
+        //if (distance < (pRadius + barHeight/2))
+        if(pPos.y < 5 && pPos.y > 0) // proof of concept, dirty code
         {
 
             //dampen it a bit
-            float force = scaleFactor * 0.2f;
-
+            float force = scaleFactor * 0.7f;
 
                 if (Input.GetKey(activeKey))
                 {
-                    /*
-                    //if Circlular
-                    Vector2 dir = c.contacts[0].point - transform.position;
-                    //we then get the opposite (-Vector2) and normalize it
-                    dir = -dir.normalized;
-                    */
-
-                    //then we add the force in the dir * the force
-                    //but for now, we'll send it up
+                    //apply up force
                     Vector2 bigUps = new Vector2(0, force);
-
                     player.GetComponent<Rigidbody2D>().AddForce(bigUps, ForceMode2D.Impulse);
-
-                    print("we in it boys");
                 }
-
-   
-
-
-
-
+            // test if condition entry
             print("NOW WE ACTUALLY IN IT");
         }
-
-
-
-        return true;
     }
 
 
