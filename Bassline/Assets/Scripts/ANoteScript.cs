@@ -116,11 +116,13 @@ public class ANoteScript : MonoBehaviour
 
         // collision logic not working
         //if (distance < (pRadius + barHeight/2))
-        if(pPos.y < 5 && pPos.y > 0) // proof of concept, dirty code
+        if((pPos.x % 200) < 40 || (pPos.x % 200) > 160)
         {
+            if (pPos.y < 5 && pPos.y > 0) // proof of concept, dirty code
+            {
 
-            //dampen it a bit
-            float force = scaleFactor * 0.7f;
+                //dampen it a bit
+                float force = scaleFactor * 0.7f;
 
                 if (Input.GetKey(activeKey))
                 {
@@ -128,8 +130,9 @@ public class ANoteScript : MonoBehaviour
                     Vector2 bigUps = new Vector2(0, force);
                     player.GetComponent<Rigidbody2D>().AddForce(bigUps, ForceMode2D.Impulse);
                 }
-            // test if condition entry
-            print("NOW WE ACTUALLY IN IT");
+                // test if condition entry
+                print("NOW WE ACTUALLY IN IT");
+            }
         }
     }
 
