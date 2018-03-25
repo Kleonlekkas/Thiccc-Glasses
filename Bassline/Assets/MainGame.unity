@@ -161,6 +161,11 @@ Prefab:
       propertyPath: m_GravityScale
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 114741860418663010, guid: a2b5c5f4555ba894c9b76bbca233a6da,
+        type: 2}
+      propertyPath: bpm
+      value: 140
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2b5c5f4555ba894c9b76bbca233a6da, type: 2}
   m_IsPrefabParent: 0
@@ -372,12 +377,32 @@ Prefab:
         type: 2}
       propertyPath: barPrefab
       value: 
-      objectReference: {fileID: 4321445227953204, guid: 525c8ae0e0fac3d4f9b120bbd890a3bf,
+      objectReference: {fileID: 1505268334567742, guid: 01d6eeb317424a042b098595027935c4,
         type: 2}
     - target: {fileID: 114597698708125950, guid: 01d6eeb317424a042b098595027935c4,
         type: 2}
       propertyPath: activeKey
       value: a
+      objectReference: {fileID: 0}
+    - target: {fileID: 114597698708125950, guid: 01d6eeb317424a042b098595027935c4,
+        type: 2}
+      propertyPath: maxScale
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114597698708125950, guid: 01d6eeb317424a042b098595027935c4,
+        type: 2}
+      propertyPath: scaleFactor
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114597698708125950, guid: 01d6eeb317424a042b098595027935c4,
+        type: 2}
+      propertyPath: activeKeytwo
+      value: s
+      objectReference: {fileID: 0}
+    - target: {fileID: 114597698708125950, guid: 01d6eeb317424a042b098595027935c4,
+        type: 2}
+      propertyPath: activeKeythree
+      value: d
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01d6eeb317424a042b098595027935c4, type: 2}

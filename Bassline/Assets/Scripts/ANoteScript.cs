@@ -5,14 +5,16 @@ using UnityEngine;
 
 public class ANoteScript : MonoBehaviour
 {
-    public bool isActive; //bool to track if the bar is active
-    public string activeKey; //str containing the key that will expand the bar if active
+    public bool isActive; //bool to track if the bar is active for the first type of jump
+    public string activeKey; //str containing the key that will expand the bar if active for the first type of jump
+    public string activeKeytwo; //str containing the key that will expand the bar if active for the second type of jump
+    public string activeKeythree; //str containing the key that will expand the bar if active for the third type of jump
     public float maxScale; //maximum size the bar can scale to
     public float scaleFactor; //how much the bar scales by per second
 	private AudioSource audio; // our note from editor
 	private GameObject player; // reference to our player
-
-    public Transform barPrefab; // set up generation of bars
+    List <GameObject> bars=new List<GameObject>();
+    public GameObject barPrefab; // set up generation of bars
 
     System.Random rand;
 
@@ -45,7 +47,10 @@ public class ANoteScript : MonoBehaviour
         //Automatically Generate Bar Prefabs
         for (int i = 1; i < 50; i++)
         {
-            Instantiate(barPrefab, new Vector3(i * 200.0F, 0, 0), Quaternion.identity);
+            GameObject bar = Instantiate(barPrefab, new Vector3(i * 200.0F, 0, 0), Quaternion.identity);
+            bar.GetComponent<ANoteScript>().activeKeytwo = "s";
+            bar.GetComponent<ANoteScript>().activeKeythree = "d";
+            bars.Add(bar);
         }
 
     }
@@ -56,6 +61,48 @@ public class ANoteScript : MonoBehaviour
         if(isActive) //checks if bar is active
         {
             if (Input.GetKey(activeKey)) //checks if active key is depressed
+            {
+                //increase scale and transform position to make it appear the bar is rising
+                transform.localScale += new Vector3(0, scaleFactor * Time.deltaTime, 0);
+                transform.position += new Vector3(0, scaleFactor / 2 * Time.deltaTime, 0);
+
+                barHeight += scaleFactor * Time.deltaTime;
+
+                //don't let it get too large
+                if (transform.localScale.y > maxScale)
+                {
+                    transform.localScale = new Vector3(transform.localScale.x, maxScale, 1);
+                    //adjust bar height collision
+                    barHeight = maxScale;
+                }
+                //or high
+                if (transform.position.y > (maxScale - 1) / 2)
+                {
+                    transform.position = new Vector3(transform.position.x, (maxScale - 1) / 2, transform.position.z);
+                }
+            }
+            else if (Input.GetKey(activeKeytwo)) //checks if active key is depressed
+            {
+                //increase scale and transform position to make it appear the bar is rising
+                transform.localScale += new Vector3(0, scaleFactor * Time.deltaTime, 0);
+                transform.position += new Vector3(0, scaleFactor / 2 * Time.deltaTime, 0);
+
+                barHeight += scaleFactor * Time.deltaTime;
+
+                //don't let it get too large
+                if (transform.localScale.y > maxScale)
+                {
+                    transform.localScale = new Vector3(transform.localScale.x, maxScale, 1);
+                    //adjust bar height collision
+                    barHeight = maxScale;
+                }
+                //or high
+                if (transform.position.y > (maxScale - 1) / 2)
+                {
+                    transform.position = new Vector3(transform.position.x, (maxScale - 1) / 2, transform.position.z);
+                }
+            }
+            else if (Input.GetKey(activeKeythree)) //checks if active key is depressed
             {
                 //increase scale and transform position to make it appear the bar is rising
                 transform.localScale += new Vector3(0, scaleFactor * Time.deltaTime, 0);
@@ -123,12 +170,26 @@ public class ANoteScript : MonoBehaviour
 
                 //dampen it a bit
                 float force = scaleFactor * 0.7f;
+                float forcetwo = scaleFactor * 0.8f;
+                float forcethree = scaleFactor * 0.9f;
 
                 if (Input.GetKey(activeKey))
                 {
                     //apply up force
                     Vector2 bigUps = new Vector2(0, force);
                     player.GetComponent<Rigidbody2D>().AddForce(bigUps, ForceMode2D.Impulse);
+                }
+                else if (Input.GetKey(activeKeytwo))
+                {
+                    //apply up force
+                    Vector2 bigUps = new Vector2(0, forcetwo);
+                    player.GetComponent<Rigidbody2D>().AddForce(bigUps, ForceMode2D.Impulse);
+                }
+                else if (Input.GetKey(activeKeythree))
+                {
+                    //apply up force
+                    Vector2 bigUpstwo = new Vector2(0, forcethree);
+                    player.GetComponent<Rigidbody2D>().AddForce(bigUpstwo, ForceMode2D.Impulse);
                 }
                 // test if condition entry
                 print("NOW WE ACTUALLY IN IT");
