@@ -17,7 +17,7 @@ public class Collectible : MonoBehaviour
 		
 	}
 
-    void OnCollisionEnter2D()
+    void OnTriggerEnter2D()
     {
         Destroy(gameObject); //doesn't destroy object fast enough to avoid physics, can't turn physics off, fuck me
     }
