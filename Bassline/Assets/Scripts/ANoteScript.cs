@@ -13,8 +13,6 @@ public class ANoteScript : MonoBehaviour
     public float scaleFactor; //how much the bar scales by per second
 	private AudioSource audio; // our note from editor
 	private GameObject player; // reference to our player
-    List <GameObject> bars=new List<GameObject>();
-    public GameObject barPrefab; // set up generation of bars
 
     System.Random rand;
 
@@ -43,16 +41,6 @@ public class ANoteScript : MonoBehaviour
 
         //maxScale = rand.Next(1, 6);
         //transform.localScale = new Vector3(0, rand.Next(1, 3), 0);
-
-        //Automatically Generate Bar Prefabs
-        for (int i = 1; i < 50; i++)
-        {
-            GameObject bar = Instantiate(barPrefab, new Vector3(i * 200.0F, 0, 0), Quaternion.identity);
-            bar.GetComponent<ANoteScript>().activeKeytwo = "s";
-            bar.GetComponent<ANoteScript>().activeKeythree = "d";
-            bars.Add(bar);
-        }
-
     }
 	
 	// Update is called once per frame
