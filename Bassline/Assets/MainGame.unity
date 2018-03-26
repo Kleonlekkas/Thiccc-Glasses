@@ -799,11 +799,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4321445227953204, guid: 01d6eeb317424a042b098595027935c4, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 30
+      value: -200
       objectReference: {fileID: 0}
     - target: {fileID: 4321445227953204, guid: 01d6eeb317424a042b098595027935c4, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -200
       objectReference: {fileID: 0}
     - target: {fileID: 4321445227953204, guid: 01d6eeb317424a042b098595027935c4, type: 2}
       propertyPath: m_LocalPosition.z
@@ -860,6 +860,61 @@ Prefab:
       propertyPath: activeKeythree
       value: d
       objectReference: {fileID: 0}
+    - target: {fileID: 82680043796223778, guid: 01d6eeb317424a042b098595027935c4,
+        type: 2}
+      propertyPath: Mute
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114597698708125950, guid: 01d6eeb317424a042b098595027935c4,
+        type: 2}
+      propertyPath: audioNoteC
+      value: 
+      objectReference: {fileID: 8300000, guid: 9762a475bccd50640bbc2bdf0d43f9d1, type: 3}
+    - target: {fileID: 114597698708125950, guid: 01d6eeb317424a042b098595027935c4,
+        type: 2}
+      propertyPath: audioNoteF
+      value: 
+      objectReference: {fileID: 8300000, guid: 2e0dfc506cd47854d818d16f7d1ba721, type: 3}
+    - target: {fileID: 114597698708125950, guid: 01d6eeb317424a042b098595027935c4,
+        type: 2}
+      propertyPath: audioNoteG
+      value: 
+      objectReference: {fileID: 8300000, guid: e4e24a25bd74aaf4d96ca78beb363bc1, type: 3}
+    - target: {fileID: 114597698708125950, guid: 01d6eeb317424a042b098595027935c4,
+        type: 2}
+      propertyPath: audioNoteA
+      value: 
+      objectReference: {fileID: 8300000, guid: a7394dbe56bb73d45985009f8738ad92, type: 3}
+    - target: {fileID: 114597698708125950, guid: 01d6eeb317424a042b098595027935c4,
+        type: 2}
+      propertyPath: audioNoteD
+      value: 
+      objectReference: {fileID: 8300000, guid: 4ab379f579320334982cf69cdea39e37, type: 3}
+    - target: {fileID: 114597698708125950, guid: 01d6eeb317424a042b098595027935c4,
+        type: 2}
+      propertyPath: audioNoteLowA
+      value: 
+      objectReference: {fileID: 8300000, guid: f7d222cea84e9e74fae00211528c54ac, type: 3}
+    - target: {fileID: 114597698708125950, guid: 01d6eeb317424a042b098595027935c4,
+        type: 2}
+      propertyPath: audioNoteLowC
+      value: 
+      objectReference: {fileID: 8300000, guid: cb287afb646dd0e4b9224a816424c2c5, type: 3}
+    - target: {fileID: 114597698708125950, guid: 01d6eeb317424a042b098595027935c4,
+        type: 2}
+      propertyPath: audioNoteLowD
+      value: 
+      objectReference: {fileID: 8300000, guid: 939825c311e01964f99d5b7c1ce4a6df, type: 3}
+    - target: {fileID: 114597698708125950, guid: 01d6eeb317424a042b098595027935c4,
+        type: 2}
+      propertyPath: audioNoteLowF
+      value: 
+      objectReference: {fileID: 8300000, guid: f8f692aea2d2aae47889a8dceb7908e9, type: 3}
+    - target: {fileID: 114597698708125950, guid: 01d6eeb317424a042b098595027935c4,
+        type: 2}
+      propertyPath: audioNoteLowG
+      value: 
+      objectReference: {fileID: 8300000, guid: 0432d74bec91f8b47a59677c17f7b3e1, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01d6eeb317424a042b098595027935c4, type: 2}
   m_IsPrefabParent: 0

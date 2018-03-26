@@ -5,30 +5,53 @@ using UnityEngine;
 
 public class ANoteScript : MonoBehaviour
 {
+    // player game object
+    private GameObject player;
+
+    #region Extend Bars
     public bool isActive; //bool to track if the bar is active for the first type of jump
     public string activeKey; //str containing the key that will expand the bar if active for the first type of jump
     public string activeKeytwo; //str containing the key that will expand the bar if active for the second type of jump
     public string activeKeythree; //str containing the key that will expand the bar if active for the third type of jump
     public float maxScale; //maximum size the bar can scale to
     public float scaleFactor; //how much the bar scales by per second
-	private AudioSource audio; // our note from editor
-	private GameObject player; // reference to our player
+    #endregion
 
-    System.Random rand;
-
-    //Collision
+    #region Collision
+    private bool isBarColliding; // check if bar and player are colliding
     private float pRadius;
     private float barHeight;
     private float barWidth;
 
     private Vector3 barPos;
     private Vector3 pPos;
+    #endregion
 
-	// Use this for initialization
-	void Start ()
+    #region Audio
+    private AudioSource audio;
+
+    // Music Notes
+    public AudioClip audioNoteA;
+    public AudioClip audioNoteC;
+    public AudioClip audioNoteD;
+    public AudioClip audioNoteF;
+    public AudioClip audioNoteG;
+
+    public AudioClip audioNoteLowA;
+    public AudioClip audioNoteLowC;
+    public AudioClip audioNoteLowD;
+    public AudioClip audioNoteLowF;
+    public AudioClip audioNoteLowG;
+    #endregion
+
+    // Use this for initialization
+    void Start ()
     {
+        // initialize audio, don't play on start
 		audio = GetComponent<AudioSource>();
-		player = GameObject.FindWithTag ("Player");
+        audio.Stop();
+
+        player = GameObject.FindWithTag ("Player");
         
         pRadius = player.transform.localScale.x / 2;
         barWidth = transform.localScale.x;
@@ -36,61 +59,24 @@ public class ANoteScript : MonoBehaviour
 
         barPos = transform.position;
         pPos = player.transform.position;
-
-        rand = new System.Random();
-
-        //maxScale = rand.Next(1, 6);
-        //transform.localScale = new Vector3(0, rand.Next(1, 3), 0);
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if(isActive) //checks if bar is active
+        extendBar();
+
+        isBarColliding = isColliding();
+
+        if (isBarColliding)
+            runCollision();
+
+    }//end update method
+
+    void extendBar() {
+        if (isActive) //checks if bar is active
         {
-            if (Input.GetKey(activeKey)) //checks if active key is depressed
-            {
-                //increase scale and transform position to make it appear the bar is rising
-                transform.localScale += new Vector3(0, scaleFactor * Time.deltaTime, 0);
-                transform.position += new Vector3(0, scaleFactor / 2 * Time.deltaTime, 0);
-
-                barHeight += scaleFactor * Time.deltaTime;
-
-                //don't let it get too large
-                if (transform.localScale.y > maxScale)
-                {
-                    transform.localScale = new Vector3(transform.localScale.x, maxScale, 1);
-                    //adjust bar height collision
-                    barHeight = maxScale;
-                }
-                //or high
-                if (transform.position.y > (maxScale - 1) / 2)
-                {
-                    transform.position = new Vector3(transform.position.x, (maxScale - 1) / 2, transform.position.z);
-                }
-            }
-            else if (Input.GetKey(activeKeytwo)) //checks if active key is depressed
-            {
-                //increase scale and transform position to make it appear the bar is rising
-                transform.localScale += new Vector3(0, scaleFactor * Time.deltaTime, 0);
-                transform.position += new Vector3(0, scaleFactor / 2 * Time.deltaTime, 0);
-
-                barHeight += scaleFactor * Time.deltaTime;
-
-                //don't let it get too large
-                if (transform.localScale.y > maxScale)
-                {
-                    transform.localScale = new Vector3(transform.localScale.x, maxScale, 1);
-                    //adjust bar height collision
-                    barHeight = maxScale;
-                }
-                //or high
-                if (transform.position.y > (maxScale - 1) / 2)
-                {
-                    transform.position = new Vector3(transform.position.x, (maxScale - 1) / 2, transform.position.z);
-                }
-            }
-            else if (Input.GetKey(activeKeythree)) //checks if active key is depressed
+            if (Input.GetKey(activeKey) || Input.GetKey(activeKeytwo) || Input.GetKey(activeKeythree)) //checks if active key is depressed
             {
                 //increase scale and transform position to make it appear the bar is rising
                 transform.localScale += new Vector3(0, scaleFactor * Time.deltaTime, 0);
@@ -113,6 +99,7 @@ public class ANoteScript : MonoBehaviour
             }
             else
             {
+                // Descale the bar while key is not pressed
                 transform.localScale += new Vector3(0, -scaleFactor * Time.deltaTime, 0);
                 transform.position += new Vector3(0, -scaleFactor / 2 * Time.deltaTime, 0);
 
@@ -129,61 +116,93 @@ public class ANoteScript : MonoBehaviour
                 }
             }
         }
+    }
 
-		//only once while its pressed, otherwise the player will hurt their ears like this programmer did
-		if (Input.GetKeyDown(activeKey)) {
-			//play the note the first time the user presses 
-			audio.Play ();
-		} else {
-			//Sounds better if it doesn't stop. whole note plays, and its a short audio clip anyway
-			//audio.Stop ();
-		}
-
-        ourCollision();
-
-    }//end update method
-
-
-    void ourCollision()
+    bool isColliding()
     {
         pPos = player.transform.position;
-        float distance = ( Vector2.Distance(pPos, barPos));
+        //float distance = ( Vector2.Distance(pPos, barPos));
 
         // collision logic not working
         //if (distance < (pRadius + barHeight/2))
-        if((pPos.x % 200) < 40 || (pPos.x % 200) > 160)
+        if ((pPos.x % 200) < 40 || (pPos.x % 200) > 160)
         {
-            if (pPos.y < 5 && pPos.y > 0) // proof of concept, dirty code
+            if (pPos.y < 5 && pPos.y > 0) 
             {
-
-                //dampen it a bit
-                float force = scaleFactor * 0.7f;
-                float forcetwo = scaleFactor * 0.8f;
-                float forcethree = scaleFactor * 0.9f;
-
-                if (Input.GetKey(activeKey))
-                {
-                    //apply up force
-                    Vector2 bigUps = new Vector2(0, force);
-                    player.GetComponent<Rigidbody2D>().AddForce(bigUps, ForceMode2D.Impulse);
-                }
-                else if (Input.GetKey(activeKeytwo))
-                {
-                    //apply up force
-                    Vector2 bigUps = new Vector2(0, forcetwo);
-                    player.GetComponent<Rigidbody2D>().AddForce(bigUps, ForceMode2D.Impulse);
-                }
-                else if (Input.GetKey(activeKeythree))
-                {
-                    //apply up force
-                    Vector2 bigUpstwo = new Vector2(0, forcethree);
-                    player.GetComponent<Rigidbody2D>().AddForce(bigUpstwo, ForceMode2D.Impulse);
-                }
-                // test if condition entry
-                print("NOW WE ACTUALLY IN IT");
+                return true;
             }
         }
+        return false;
     }
 
+    void runCollision() {
+
+        float force; // scalar force
+        Vector2 forceUp = new Vector2(0,0); // vector force
+
+        //audio clip to be played - default low C
+        AudioClip clipToPlay = audioNoteLowC;
+
+        // random int for audio clip to play
+        int rand = UnityEngine.Random.Range(1, 4);
+
+        if (Input.GetKey(activeKey)) // 'a' key pressed
+        {
+            //apply up force
+            force = scaleFactor * 0.8f;
+            forceUp = new Vector2(0, force);
+            player.GetComponent<Rigidbody2D>().AddForce(forceUp, ForceMode2D.Impulse);
+
+            //music note logic --- change notes to audioClips in Unity Inspector
+            if (rand == 1)
+                clipToPlay = audioNoteLowC;
+            else if (rand == 2)
+                clipToPlay = audioNoteLowD;
+            else if (rand == 3)
+                clipToPlay = audioNoteLowF;
+            else
+                clipToPlay = audioNoteLowC;
+            audio.clip = clipToPlay;
+            audio.Play();
+        }
+        else if (Input.GetKey(activeKeytwo)) // 's' key pressed
+        {
+            //apply up force
+            force = scaleFactor * 0.9f;
+            forceUp = new Vector2(0, force);
+            player.GetComponent<Rigidbody2D>().AddForce(forceUp, ForceMode2D.Impulse);
+
+            //music note logic --- change notes to audioClips in Unity Inspector
+            if (rand == 1)
+                clipToPlay = audioNoteLowG;
+            else if (rand == 2)
+                clipToPlay = audioNoteLowA;
+            else if (rand == 3)
+                clipToPlay = audioNoteC;
+            else
+                clipToPlay = audioNoteLowG;
+            audio.clip = clipToPlay;
+            audio.Play();
+        }
+        else if (Input.GetKey(activeKeythree)) // 'd' key pressed
+        {
+            //apply up force
+            force = scaleFactor;
+            forceUp = new Vector2(0, force);
+            player.GetComponent<Rigidbody2D>().AddForce(forceUp, ForceMode2D.Impulse);
+
+            //music note logic --- change notes to audioClips in Unity Inspector
+            if (rand == 1)
+                clipToPlay = audioNoteD;
+            else if (rand == 2)
+                clipToPlay = audioNoteF;
+            else if (rand == 3)
+                clipToPlay = audioNoteG;
+            else
+                clipToPlay = audioNoteA;
+            audio.clip = clipToPlay;
+            audio.Play();
+        }
+    }
 
 }
