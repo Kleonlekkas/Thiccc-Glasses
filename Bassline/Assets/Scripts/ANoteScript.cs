@@ -149,7 +149,7 @@ public class ANoteScript : MonoBehaviour
         if (Input.GetKey(activeKey)) // 'a' key pressed
         {
             //apply up force
-            force = scaleFactor * 0.8f;
+            force = 40f;
             forceUp = new Vector2(0, force);
             player.GetComponent<Rigidbody2D>().AddForce(forceUp, ForceMode2D.Impulse);
 
@@ -168,7 +168,7 @@ public class ANoteScript : MonoBehaviour
         else if (Input.GetKey(activeKeytwo)) // 's' key pressed
         {
             //apply up force
-            force = scaleFactor * 0.9f;
+            force = 50f;
             forceUp = new Vector2(0, force);
             player.GetComponent<Rigidbody2D>().AddForce(forceUp, ForceMode2D.Impulse);
 
@@ -187,7 +187,7 @@ public class ANoteScript : MonoBehaviour
         else if (Input.GetKey(activeKeythree)) // 'd' key pressed
         {
             //apply up force
-            force = scaleFactor;
+            force = 60;
             forceUp = new Vector2(0, force);
             player.GetComponent<Rigidbody2D>().AddForce(forceUp, ForceMode2D.Impulse);
 
