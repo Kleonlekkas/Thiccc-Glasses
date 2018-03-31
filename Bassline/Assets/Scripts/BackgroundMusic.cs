@@ -37,10 +37,10 @@ public class BackgroundMusic : MonoBehaviour {
             Transform tempBar;
 
             //current width is 300
-            tempBar = Instantiate(barPrefab, new Vector3(i * 150.0F, 0, 0), Quaternion.identity);
+            tempBar = Instantiate(barPrefab, new Vector3(i * 150.0F, -30, 1), Quaternion.identity);
             //Assign a random color from the color list
 
-            barPrefab.GetComponent<Renderer>().sharedMaterial.color = colors[Random.Range(1, colors.Count - 1)];
+            tempBar.GetComponent<Renderer>().material.color = colors[Random.Range(1, colors.Count - 1)];
             //Random.seed = Random.Range(1, 5);
 
             listOfBars.Add(tempBar);
@@ -63,13 +63,13 @@ public class BackgroundMusic : MonoBehaviour {
             //Debug.DrawLine(new Vector3(Mathf.Log(i - 1), Mathf.Log(spectrum[i - 1]), 3), new Vector3(Mathf.Log(i), Mathf.Log(spectrum[i]), 3), Color.blue);
             if (invert)
             {
-                listOfBars[i].transform.localScale += new Vector3(0, (spectrum[i] * 1000) * Time.deltaTime, 0);
-                listOfBars[i].transform.position += new Vector3(0, (spectrum[i] * 1000) / 2 * Time.deltaTime, 0);
+                listOfBars[i].transform.localScale += new Vector3(0, (spectrum[i] * 100) * (Time.deltaTime/2), 0);
+                listOfBars[i].transform.position += new Vector3(0, (spectrum[i] * 100) / 2 * Time.deltaTime, 0);
             }
             else
             {
-                listOfBars[i].transform.localScale -= new Vector3(0, (spectrum[i] * 1000) * Time.deltaTime, 0);
-                listOfBars[i].transform.position -= new Vector3(0, (spectrum[i] * 1000) / 2 * Time.deltaTime, 0);
+                listOfBars[i].transform.localScale -= new Vector3(0, (spectrum[i] * 200) * (Time.deltaTime*2), 0);
+                listOfBars[i].transform.position -= new Vector3(0, (spectrum[i] * 200) / 2 * Time.deltaTime, 0);
             }
         }
 
