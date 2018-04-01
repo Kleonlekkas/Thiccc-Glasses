@@ -127,7 +127,7 @@ public class ANoteScript : MonoBehaviour
         //if (distance < (pRadius + barHeight/2))
         if ((pPos.x % 200) < 40 || (pPos.x % 200) > 160)
         {
-            if (pPos.y < 5 && pPos.y > 0) 
+            if (pPos.y < 3.5 && pPos.y > 0) 
             {
                 return true;
             }
@@ -149,7 +149,7 @@ public class ANoteScript : MonoBehaviour
         if (Input.GetKey(activeKey)) // 'a' key pressed
         {
             //apply up force
-            force = 50f;
+            force = 37f;
             forceUp = new Vector2(0, force);
             player.GetComponent<Rigidbody2D>().AddForce(forceUp, ForceMode2D.Impulse);
 
@@ -168,7 +168,7 @@ public class ANoteScript : MonoBehaviour
         else if (Input.GetKey(activeKeytwo)) // 's' key pressed
         {
             //apply up force
-            force = 60f;
+            force = 40f;
             forceUp = new Vector2(0, force);
             player.GetComponent<Rigidbody2D>().AddForce(forceUp, ForceMode2D.Impulse);
 
@@ -187,7 +187,7 @@ public class ANoteScript : MonoBehaviour
         else if (Input.GetKey(activeKeythree)) // 'd' key pressed
         {
             //apply up force
-            force = 70;
+            force = 43f;
             forceUp = new Vector2(0, force);
             player.GetComponent<Rigidbody2D>().AddForce(forceUp, ForceMode2D.Impulse);
 

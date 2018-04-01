@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     void Start ()
     {
         //Automatically Generate Bar Prefabs
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i < 100; i++)
         {
             GameObject bar = Instantiate(barPrefab, new Vector3(i * 200.0F, 0, 0), Quaternion.identity);
             bar.GetComponent<ANoteScript>().activeKeytwo = "s";

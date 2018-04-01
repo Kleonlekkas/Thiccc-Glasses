@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 61334867340876102}
   m_Layer: 0
   m_Name: Bar
-  m_TagString: Bar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1505268334567742}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 30, y: 0, z: 0}
+  m_LocalPosition: {x: -200, y: -200, z: 0}
   m_LocalScale: {x: 80, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -58,7 +58,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ba65d5d0bfd198f48826cce717140d0a, type: 2}
+  - {fileID: 2100000, guid: 40fa4068db495ff4197e840f7ce5b492, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -116,7 +116,7 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1505268334567742}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9762a475bccd50640bbc2bdf0d43f9d1, type: 3}
@@ -203,5 +203,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 1
   activeKey: a
-  maxScale: 2.5
+  activeKeytwo: s
+  activeKeythree: d
+  maxScale: 5
   scaleFactor: 100
+  audioNoteA: {fileID: 8300000, guid: a7394dbe56bb73d45985009f8738ad92, type: 3}
+  audioNoteC: {fileID: 8300000, guid: 9762a475bccd50640bbc2bdf0d43f9d1, type: 3}
+  audioNoteD: {fileID: 8300000, guid: 4ab379f579320334982cf69cdea39e37, type: 3}
+  audioNoteF: {fileID: 8300000, guid: 2e0dfc506cd47854d818d16f7d1ba721, type: 3}
+  audioNoteG: {fileID: 8300000, guid: e4e24a25bd74aaf4d96ca78beb363bc1, type: 3}
+  audioNoteLowA: {fileID: 8300000, guid: f7d222cea84e9e74fae00211528c54ac, type: 3}
+  audioNoteLowC: {fileID: 8300000, guid: cb287afb646dd0e4b9224a816424c2c5, type: 3}
+  audioNoteLowD: {fileID: 8300000, guid: 939825c311e01964f99d5b7c1ce4a6df, type: 3}
+  audioNoteLowF: {fileID: 8300000, guid: f8f692aea2d2aae47889a8dceb7908e9, type: 3}
+  audioNoteLowG: {fileID: 8300000, guid: 0432d74bec91f8b47a59677c17f7b3e1, type: 3}

@@ -13,23 +13,32 @@ public class BackgroundMusic : MonoBehaviour {
     public Transform barPrefab; // set up generation of bars
     private bool invert = true;//used to move the background bars up or down on every other update
     private System.Random rand;
-    private List<Color> colors; //list of possible colors the bars can be
+    private List<Color32> colors; //list of possible colors the bars can be
+    private byte randomColorRange; // generate random colors in darker values
 
     private List<Transform> listOfBars;
-    // Use this for initialization
+    
     void Start () {
+        
+        // Make floor invisible
+        GetComponent<MeshRenderer>().enabled = false;
+
         audio = GetComponent<AudioSource>();
 
         listOfBars = new List<Transform>();
-        colors = new List<Color>();
-        //populate with colors of the rainbow. cute
-        colors.Add(Color.red);
-        colors.Add(Color.yellow);
-        colors.Add(Color.green);
-        colors.Add(Color.blue);
-        colors.Add(Color.cyan);
-        colors.Add(Color.magenta);
-        colors.Add(Color.white);
+        colors = new List<Color32>();
+
+        for(int i=0; i < 10; i++) { 
+            // get new range of colors
+            randomColorRange = (byte)Random.Range(60+(i*4), 120+(i*5));
+            //populate with dark rainbow colors randomly selected
+            colors.Add(new Color32(randomColorRange, 0, 0, 100)); // R
+            colors.Add(new Color32(0, randomColorRange, 0, 100)); // G
+            colors.Add(new Color32(0, 0, randomColorRange, 100)); // B
+            colors.Add(new Color32(randomColorRange, randomColorRange, 0, 100)); // RG
+            colors.Add(new Color32(randomColorRange, 0, randomColorRange, 100)); // RB
+            colors.Add(new Color32(0, randomColorRange, randomColorRange, 100)); // BG
+        }
 
         //Automatically Generate Bar Prefabs
         for (int i = 1; i < 256; i++)
@@ -42,7 +51,7 @@ public class BackgroundMusic : MonoBehaviour {
 
             tempBar.GetComponent<Renderer>().material.color = colors[Random.Range(1, colors.Count - 1)];
             //Random.seed = Random.Range(1, 5);
-
+            
             listOfBars.Add(tempBar);
         }
     }

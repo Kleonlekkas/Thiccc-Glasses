@@ -270,12 +270,12 @@ Prefab:
     - target: {fileID: 50879876119029380, guid: a2b5c5f4555ba894c9b76bbca233a6da,
         type: 2}
       propertyPath: m_Mass
-      value: 25
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 50879876119029380, guid: a2b5c5f4555ba894c9b76bbca233a6da,
         type: 2}
       propertyPath: m_GravityScale
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 114741860418663010, guid: a2b5c5f4555ba894c9b76bbca233a6da,
         type: 2}
@@ -287,6 +287,16 @@ Prefab:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 42bcfa5fe9b41c14792cda2fd48a497b, type: 2}
+    - target: {fileID: 114741860418663010, guid: a2b5c5f4555ba894c9b76bbca233a6da,
+        type: 2}
+      propertyPath: ballSpeed
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 23407473631824938, guid: a2b5c5f4555ba894c9b76bbca233a6da,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 40fa4068db495ff4197e840f7ce5b492, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2b5c5f4555ba894c9b76bbca233a6da, type: 2}
   m_IsPrefabParent: 0
@@ -436,7 +446,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 0.078431375, g: 0, b: 0.11764706, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -968,92 +978,30 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 114597698708125950, guid: 01d6eeb317424a042b098595027935c4,
-        type: 2}
-      propertyPath: barPrefab
-      value: 
-      objectReference: {fileID: 1505268334567742, guid: 01d6eeb317424a042b098595027935c4,
-        type: 2}
-    - target: {fileID: 114597698708125950, guid: 01d6eeb317424a042b098595027935c4,
-        type: 2}
-      propertyPath: activeKey
-      value: a
+    - target: {fileID: 1505268334567742, guid: 01d6eeb317424a042b098595027935c4, type: 2}
+      propertyPath: m_Name
+      value: Audio Bar
       objectReference: {fileID: 0}
-    - target: {fileID: 114597698708125950, guid: 01d6eeb317424a042b098595027935c4,
+    - target: {fileID: 82680043796223778, guid: 01d6eeb317424a042b098595027935c4,
         type: 2}
-      propertyPath: maxScale
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114597698708125950, guid: 01d6eeb317424a042b098595027935c4,
-        type: 2}
-      propertyPath: scaleFactor
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114597698708125950, guid: 01d6eeb317424a042b098595027935c4,
-        type: 2}
-      propertyPath: activeKeytwo
-      value: s
-      objectReference: {fileID: 0}
-    - target: {fileID: 114597698708125950, guid: 01d6eeb317424a042b098595027935c4,
-        type: 2}
-      propertyPath: activeKeythree
-      value: d
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 82680043796223778, guid: 01d6eeb317424a042b098595027935c4,
         type: 2}
       propertyPath: Mute
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 82680043796223778, guid: 01d6eeb317424a042b098595027935c4,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 114597698708125950, guid: 01d6eeb317424a042b098595027935c4,
         type: 2}
-      propertyPath: audioNoteC
-      value: 
-      objectReference: {fileID: 8300000, guid: 9762a475bccd50640bbc2bdf0d43f9d1, type: 3}
-    - target: {fileID: 114597698708125950, guid: 01d6eeb317424a042b098595027935c4,
-        type: 2}
-      propertyPath: audioNoteF
-      value: 
-      objectReference: {fileID: 8300000, guid: 2e0dfc506cd47854d818d16f7d1ba721, type: 3}
-    - target: {fileID: 114597698708125950, guid: 01d6eeb317424a042b098595027935c4,
-        type: 2}
-      propertyPath: audioNoteG
-      value: 
-      objectReference: {fileID: 8300000, guid: e4e24a25bd74aaf4d96ca78beb363bc1, type: 3}
-    - target: {fileID: 114597698708125950, guid: 01d6eeb317424a042b098595027935c4,
-        type: 2}
-      propertyPath: audioNoteA
-      value: 
-      objectReference: {fileID: 8300000, guid: a7394dbe56bb73d45985009f8738ad92, type: 3}
-    - target: {fileID: 114597698708125950, guid: 01d6eeb317424a042b098595027935c4,
-        type: 2}
-      propertyPath: audioNoteD
-      value: 
-      objectReference: {fileID: 8300000, guid: 4ab379f579320334982cf69cdea39e37, type: 3}
-    - target: {fileID: 114597698708125950, guid: 01d6eeb317424a042b098595027935c4,
-        type: 2}
-      propertyPath: audioNoteLowA
-      value: 
-      objectReference: {fileID: 8300000, guid: f7d222cea84e9e74fae00211528c54ac, type: 3}
-    - target: {fileID: 114597698708125950, guid: 01d6eeb317424a042b098595027935c4,
-        type: 2}
-      propertyPath: audioNoteLowC
-      value: 
-      objectReference: {fileID: 8300000, guid: cb287afb646dd0e4b9224a816424c2c5, type: 3}
-    - target: {fileID: 114597698708125950, guid: 01d6eeb317424a042b098595027935c4,
-        type: 2}
-      propertyPath: audioNoteLowD
-      value: 
-      objectReference: {fileID: 8300000, guid: 939825c311e01964f99d5b7c1ce4a6df, type: 3}
-    - target: {fileID: 114597698708125950, guid: 01d6eeb317424a042b098595027935c4,
-        type: 2}
-      propertyPath: audioNoteLowF
-      value: 
-      objectReference: {fileID: 8300000, guid: f8f692aea2d2aae47889a8dceb7908e9, type: 3}
-    - target: {fileID: 114597698708125950, guid: 01d6eeb317424a042b098595027935c4,
-        type: 2}
-      propertyPath: audioNoteLowG
-      value: 
-      objectReference: {fileID: 8300000, guid: 0432d74bec91f8b47a59677c17f7b3e1, type: 3}
+      propertyPath: maxScale
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01d6eeb317424a042b098595027935c4, type: 2}
   m_IsPrefabParent: 0
@@ -1146,7 +1094,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1681471953}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 495, y: -30, z: 0}
+  m_LocalPosition: {x: 495, y: -60, z: 0}
   m_LocalScale: {x: 25000, y: 0.88295126, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

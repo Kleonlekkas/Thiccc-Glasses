@@ -29,8 +29,8 @@ public class CameraFollow : MonoBehaviour {
         //(Camera is a keyword, had to change to CameraObj)
 
         if (Player.position.y < 0) {
-            m_FieldOfView = Player.position.y + (2*scaleFOV);
-        }
+            m_FieldOfView = Player.position.y + (scaleFOV);
+        } 
 
 		//Set a tiny cap
 		if (m_FieldOfView > 15) {
