@@ -72,7 +72,7 @@ public class BackgroundMusic : MonoBehaviour {
             //Debug.DrawLine(new Vector3(Mathf.Log(i - 1), Mathf.Log(spectrum[i - 1]), 3), new Vector3(Mathf.Log(i), Mathf.Log(spectrum[i]), 3), Color.blue);
             if (invert)
             {
-                listOfBars[i].transform.localScale += new Vector3(0, (spectrum[i] * 100) * (Time.deltaTime/2), 0);
+                listOfBars[i].transform.localScale += new Vector3(0, (spectrum[i] * 100) * (Time.deltaTime / 2), 0);
                 listOfBars[i].transform.position += new Vector3(0, (spectrum[i] * 100) / 2 * Time.deltaTime, 0);
             }
             else

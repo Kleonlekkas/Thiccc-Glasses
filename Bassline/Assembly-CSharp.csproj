@@ -51,9 +51,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\lineMusicScript.cs" />
      <Compile Include="Assets\Scripts\ANoteScript.cs" />
+     <Compile Include="Assets\Scripts\BackgroundMusic.cs" />
      <Compile Include="Assets\Scripts\CameraFollow.cs" />
+     <Compile Include="Assets\Scripts\Collectible.cs" />
+     <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\Jump_Collectible.cs" />
      <Compile Include="Assets\Scripts\moveBall.cs" />
+     <Compile Include="Assets\Scripts\StartButtonScript.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>F:/Unitee/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
