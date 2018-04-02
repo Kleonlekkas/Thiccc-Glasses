@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bar
   - Ground
+  - Canvas
   layers:
   - Default
   - TransparentFX

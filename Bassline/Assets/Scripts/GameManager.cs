@@ -21,12 +21,12 @@ public class GameManager : MonoBehaviour
         }
 
         //Automatically Generate Collectible Prefabs
-        for (int i = 0; i < 100; i++)
+        for (int i = 1; i < 100; i++)
         {
-            GameObject collectible = Instantiate(collectPrefab, new Vector3(i * 210.0F, 30.0f, 0), Quaternion.identity);
-            GameObject collectible1 = Instantiate(collectPrefab, new Vector3(i * 225.0F, 40.0f, 0), Quaternion.identity);
-            GameObject collectible2 = Instantiate(collectPrefab, new Vector3((i * 230.0F)+10.0f, 25.0f, 0), Quaternion.identity);
-            GameObject collectible3 = Instantiate(collectPrefab, new Vector3((i * 243.0F)-10.0f, 50.0f, 0), Quaternion.identity);
+            GameObject collectible = Instantiate(collectPrefab, new Vector3(i * 25.0F, 10f, 0), Quaternion.identity);
+            GameObject collectible1 = Instantiate(collectPrefab, new Vector3(i * 50.0F, 20f, 0), Quaternion.identity);
+            GameObject collectible2 = Instantiate(collectPrefab, new Vector3((i * 75.5F), 30f, 0), Quaternion.identity);
+            GameObject collectible3 = Instantiate(collectPrefab, new Vector3((i * 125.0F), 40f, 0), Quaternion.identity);
         }
     }
 	

@@ -16,6 +16,7 @@ public class Collectible : MonoBehaviour
         score = 0;
 
         player = GameObject.FindWithTag("Player");
+        scoreText = Text.FindObjectOfType<Text>();
     }
 	
 	// Update is called once per frame
