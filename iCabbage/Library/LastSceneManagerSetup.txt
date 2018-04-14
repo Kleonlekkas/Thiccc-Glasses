@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/first_puzzle.unity
+- path: Assets/Scene/first_puzzle.unity
   isLoaded: 1
   isActive: 1
