@@ -24,13 +24,40 @@ public class movePlayer : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
-        if (playerObj.transform.position.x < -12.0f) { isLeftBlocked = true; }
-        else if (playerObj.transform.position.x > 12.0f) { isRightBlocked = true; }
-        else if (playerObj.transform.position.z < -5.0f) { isBottomBlocked = true; }
-        else if (playerObj.transform.position.z > 5.0f) { isTopBlocked = true; }
+        if (playerObj.transform.position.x < -12.0f)
+        {
+            isLeftBlocked = true;
+        }
         else
         {
-            isLeftBlocked = isRightBlocked = isBottomBlocked = isTopBlocked = false;
+            isLeftBlocked = false;
+        }
+
+        if (playerObj.transform.position.x > 12.0f)
+        {
+            isRightBlocked = true;
+        }
+        else
+        {
+            isRightBlocked = false;
+        }
+
+        if (playerObj.transform.position.z < -5.0f)
+        {
+            isBottomBlocked = true;
+        }
+        else
+        {
+            isBottomBlocked = false;
+        }
+
+        if (playerObj.transform.position.z > 5.0f)
+        {
+            isTopBlocked = true;
+        }
+        else
+        {
+            isTopBlocked = false;
         }
 
         if (!isTopBlocked)
