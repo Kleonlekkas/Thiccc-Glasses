@@ -55,7 +55,7 @@ public class movePlayer : MonoBehaviour {
         //Initialize map. this will be streamed in in the future
         //1 is player, 2 is durian, 3 is movable object, 4 is immovable object, 5 is goal
         map = new int[,]{
-            { 0, 0, 0, 0, 5 },
+            { 0, 2, 0, 0, 5 },
             { 0, 0, 2, 0, 0 },
             { 0, 0, 0, 2, 0 },
             { 0, 0, 0, 0, 0 },
@@ -67,25 +67,34 @@ public class movePlayer : MonoBehaviour {
         //Set its position to be the center of the grid we made
 		m_Camera.transform.position = new Vector3(scale * (map.GetLength(0) / 2), (scale * 5), scale * (map.GetLength(0) / 2));
 
+        vertWall.localScale = new Vector3(0.1f, 0.1f, scale * (map.GetLength(0)));
+        horzWall.localScale = new Vector3(scale * (map.GetLength(1)), 0.1f, 0.1f);
+
+        //Draw in the walls
+        for (int i = 0; i < map.GetLength(0); i++)
+        {
+            Instantiate(vertWall, new Vector3((i * scale) - scale / 2, 0, scale * (map.GetLength(1) / 2)), vertWall.transform.rotation);
+        }
+        for (int n = 0; n < map.GetLength(1); n++)
+        {
+            Instantiate(horzWall, new Vector3(scale * (map.GetLength(0) / 2), 0, (n * scale) - scale / 2), horzWall.transform.rotation);
+        }
+
+            Instantiate(vertWall, new Vector3(((map.GetLength(0)) * scale) - scale / 2, 0, scale * (map.GetLength(0) / 2)), vertWall.transform.rotation);
+            Instantiate(horzWall, new Vector3(scale * (map.GetLength(1) / 2), 0, ((map.GetLength(1)) * scale) - scale / 2), horzWall.transform.rotation);
+
+            Transform myFloor = Instantiate(floor, new Vector3(scale * (map.GetLength(0) / 2), 0.0f, scale * (map.GetLength(1) / 2)), floor.transform.rotation);
+            myFloor.localScale = new Vector3(scale * (map.GetLength(0)), 0.1f, scale * (map.GetLength(1)));
+            myFloor.position = new Vector3(myFloor.position.x, myFloor.position.y - 0.25f, myFloor.position.z);
+ 
+
         //Get length of first dimension
         for (int i = 0; i < map.GetLength(0); i++)
         {
+
             //Get length of second dimension
             for (int n = 0; n < map.GetLength(1); n++)
             {
-                //Draw in the walls
-                Instantiate(vertWall, new Vector3((i * scale) - scale/2, 0, scale * (map.GetLength(1) / 2)), vertWall.transform.rotation);
-                Instantiate(horzWall, new Vector3(scale * (map.GetLength(0) /2), 0, (n * scale) - scale / 2), horzWall.transform.rotation);
-                //Draw in an extra wall for each edge, and draw our floor
-                if (i == 4 && n == 4)
-                {
-                    Instantiate(vertWall, new Vector3(((i + 1) * scale) - scale / 2, 0, scale * (map.GetLength(0) / 2)), vertWall.transform.rotation);
-                    Instantiate(horzWall, new Vector3(scale * (map.GetLength(0) / 2), 0, ((n + 1) * scale) - scale / 2), horzWall.transform.rotation);
-
-                    Transform myFloor = Instantiate(floor, new Vector3(scale * (map.GetLength(0) / 2), 0.0f, scale * (map.GetLength(1) / 2)), floor.transform.rotation);
-                    myFloor.localScale = new Vector3(scale * (map.GetLength(0)), 0.1f, scale * (map.GetLength(1)));
-					myFloor.position = new Vector3 (myFloor.position.x, myFloor.position.y - 0.25f, myFloor.position.z);
-                }
                 //Place player
                 if (map[i, n] == 1)
                 {
@@ -313,11 +322,26 @@ public class movePlayer : MonoBehaviour {
 		//chase accordingly
 
 		for (int i = 0; i < enemies.Count; i++) {
+            bool shouldSkip = false;
 			//If the enemy and the player are in the same horizontal index, i.e, the same column
 			if (enemies [i].horzInd == myPlayerObj.horzInd) {
 				//Should check if in line of sight, we'll do that later
 				if (enemies [i].vertInd < myPlayerObj.vertInd) {
 					//Player is below enemy
+                    ///Check if in line of sight, continue
+                   for (int j = enemies[i].vertInd + 1; j < (myPlayerObj.vertInd - enemies[i].vertInd) + enemies[i].vertInd; j++)
+                    {
+                        if (map[j, enemies[i].horzInd] != 0)
+                        {
+                            //Space is occupied
+                            Debug.Log("Vertical Checked: " + j.ToString());
+                            shouldSkip = true;
+                        }
+                    }
+                   if (shouldSkip)
+                    {
+                        continue;
+                    }
 
 					//move enemy down
 					moveObjectDown(enemies[i].theObject);
