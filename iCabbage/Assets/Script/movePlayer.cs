@@ -277,12 +277,14 @@ public class movePlayer : MonoBehaviour {
 			myPlayerObj.horzInd++;
         }
 
-		//Update Durians
-		updateDurians();
+
 
 		//Update map
 		updateMap (myPlayerObj.theObject.name);
-			
+
+        //Update Durians
+        updateDurians();
+
 
     }//end player move attempt
 
@@ -327,10 +329,17 @@ public class movePlayer : MonoBehaviour {
 			if (enemies [i].horzInd == myPlayerObj.horzInd) {
 				//Should check if in line of sight, we'll do that later
 				if (enemies [i].vertInd < myPlayerObj.vertInd) {
-					//Player is below enemy
+                    //Player is below enemy
                     ///Check if in line of sight, continue
-                   for (int j = enemies[i].vertInd + 1; j < (myPlayerObj.vertInd - enemies[i].vertInd) + enemies[i].vertInd; j++)
+                    ///
+                    //Current line
+                    for (int x = 0; x < 4; x++)
                     {
+                        Debug.Log("The row: " + map[x, enemies[i].horzInd].ToString());
+                    }
+                    for (int j = enemies[i].vertInd + 1; j < myPlayerObj.vertInd; j++) // works for 0 - 4
+                    {
+                        Debug.Log("Coordinates checked: " + j.ToString() + " , " + enemies[i].horzInd.ToString());
                         if (map[j, enemies[i].horzInd] != 0)
                         {
                             //Space is occupied
@@ -340,9 +349,10 @@ public class movePlayer : MonoBehaviour {
                     }
                    if (shouldSkip)
                     {
+                        Debug.Log("Skipped!");
                         continue;
                     }
-
+                    Debug.Log(shouldSkip);
 					//move enemy down
 					moveObjectDown(enemies[i].theObject);
 
