@@ -42,15 +42,15 @@ public class movePlayer : MonoBehaviour {
     private int[,] map;
     //Scale that objects will be moved by.
     private float scale;
-
+    //creates a string
+    public string test;
 
     // Use this for initialization
     void Start ()
     {
-
-		//initialize lists (will have one for each type of object that
-		//has multiples. then we'll put those lists into one SUPER LIST
-		enemies = new List<MyObject>();
+        //initialize lists (will have one for each type of object that
+        //has multiples. then we'll put those lists into one SUPER LIST
+        enemies = new List<MyObject>();
 
         //Initialize map. this will be streamed in in the future
         //1 is player, 2 is durian, 3 is movable object, 4 is immovable object, 5 is goal
@@ -101,6 +101,10 @@ public class movePlayer : MonoBehaviour {
 					myPlayerObj = new MyObject(GameObject.FindGameObjectWithTag("Player"), n, i);
 					myPlayerObj.theObject.transform.position = new Vector3(i * scale, 0.0f, n * scale);
 					Debug.Log ("Player: " + i.ToString() + " , " + n.ToString());
+                    //assigns the text file to the string
+                    test = System.IO.File.ReadAllText("Assets/Script/test.txt");
+                    //writes the string in the console
+                    Debug.Log (test);
                 }
 				//Place enemy
 				if (map[i, n] == 2)
