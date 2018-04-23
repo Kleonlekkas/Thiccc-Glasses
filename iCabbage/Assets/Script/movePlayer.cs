@@ -20,10 +20,7 @@ public class movePlayer : MonoBehaviour {
 			vertInd = p_vert;
 		}
 	}
-
-
-
-
+    
 	//Floor and walls
     public Transform vertWall;
     public Transform horzWall;
@@ -32,11 +29,17 @@ public class movePlayer : MonoBehaviour {
 	//our custom class to hold it and its indices
 	private MyObject myPlayerObj;
 
-	//List of all our enemies, duh
-	List<MyObject> enemies;
+    //List of all our enemies
+    List<MyObject> enemies;
 
-	public GameObject enemy;
-	public GameObject end;
+    //List of all our milk and orange crates
+    List<MyObject> milkCrates;
+    List<MyObject> orangeCrates;
+
+    public GameObject milkCrateObj;
+    public GameObject orangeCrateObj;
+    public GameObject enemy;
+    public GameObject end;
 
     //Map to hold coordinates of our objects
     private int[,] map;
@@ -51,11 +54,13 @@ public class movePlayer : MonoBehaviour {
         //initialize lists (will have one for each type of object that
         //has multiples. then we'll put those lists into one SUPER LIST
         enemies = new List<MyObject>();
+        milkCrates = new List<MyObject>();
+        orangeCrates = new List<MyObject>();
 
         //Initialize map. this will be streamed in in the future
         //1 is player, 2 is durian, 3 is movable object, 4 is immovable object, 5 is goal
         map = new int[,]{
-            { 0, 2, 0, 0, 5 },
+            { 0, 0, 0, 0, 5 },
             { 0, 0, 2, 0, 0 },
             { 0, 0, 0, 2, 0 },
             { 0, 0, 0, 0, 0 },
@@ -100,24 +105,28 @@ public class movePlayer : MonoBehaviour {
                 {
 					myPlayerObj = new MyObject(GameObject.FindGameObjectWithTag("Player"), n, i);
 					myPlayerObj.theObject.transform.position = new Vector3(i * scale, 0.0f, n * scale);
-					Debug.Log ("Player: " + i.ToString() + " , " + n.ToString());
+
                     //assigns the text file to the string
                     test = System.IO.File.ReadAllText("Assets/Script/test.txt");
                     //writes the string in the console
                     Debug.Log (test);
                 }
-				//Place enemy
-				if (map[i, n] == 2)
-				{
-					enemies.Add(new MyObject(Instantiate (enemy, new Vector3(i * scale, 0.0f, n * scale), enemy.transform.rotation), n, i));
-					Debug.Log ("Enemy: " + i.ToString() + " , " + n.ToString());
-				}
-				//Place End
-				if (map[i, n] == 5)
-				{
+
+                //Place enemies
+                if (map[i, n] == 2)
+                    enemies.Add(new MyObject(Instantiate(enemy, new Vector3(i * scale, 0.0f, n * scale), enemy.transform.rotation), n, i));
+                 
+                //Place milk crates
+                if (map[i, n] == 3)
+                    milkCrates.Add(new MyObject(Instantiate(milkCrateObj, new Vector3(i * scale, 0.0f, n * scale), milkCrateObj.transform.rotation), n, i));
+                 
+                //Place orange crates
+                if (map[i, n] == 4)
+                    orangeCrates.Add(new MyObject(Instantiate(orangeCrateObj, new Vector3(i * scale, 0.0f, n * scale), orangeCrateObj.transform.rotation), n, i));
+
+                //Place End
+                if (map[i, n] == 5)
 					Instantiate (end, new Vector3(i * scale, 0.0f, n * scale), end.transform.rotation);
-					Debug.Log ("Goal: " + i.ToString() + " , " + n.ToString());
-				}
             }
         }
     }
@@ -140,83 +149,6 @@ public class movePlayer : MonoBehaviour {
             playerMoveAttempt("Right");
         }
 
-        /*
-        if (playerObj.transform.position.x < -12.0f)
-        {
-            isLeftBlocked = true;
-        }
-        else
-        {
-            isLeftBlocked = false;
-        }
-
-        if (playerObj.transform.position.x > 12.0f)
-        {
-            isRightBlocked = true;
-        }
-        else
-        {
-            isRightBlocked = false;
-        }
-
-        if (playerObj.transform.position.z < -5.0f)
-        {
-            isBottomBlocked = true;
-        }
-        else
-        {
-            isBottomBlocked = false;
-        }
-
-        if (playerObj.transform.position.z > 5.0f)
-        {
-            isTopBlocked = true;
-        }
-        else
-        {
-            isTopBlocked = false;
-        }
-
-        if (!isTopBlocked)
-        {
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                playerObj.transform.position = new Vector3(
-                    playerObj.transform.position.x,
-                    playerObj.transform.position.y,
-                    playerObj.transform.position.z + scale);
-            }
-        }
-        if (!isLeftBlocked) { 
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                playerObj.transform.position = new Vector3(
-                    playerObj.transform.position.x - scale,
-                    playerObj.transform.position.y,
-                    playerObj.transform.position.z);
-            }
-        }
-        if (!isBottomBlocked)
-        {
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                playerObj.transform.position = new Vector3(
-                    playerObj.transform.position.x,
-                    playerObj.transform.position.y,
-                    playerObj.transform.position.z - scale);
-            }
-        }
-        if (!isRightBlocked)
-        {
-            if (Input.GetKeyDown(KeyCode.D))
-            {
-                playerObj.transform.position = new Vector3(
-                    playerObj.transform.position.x + scale,
-                    playerObj.transform.position.y,
-                    playerObj.transform.position.z);
-            }
-        }
-        */
     }//end update
 
     void playerMoveAttempt(string direction) { 
