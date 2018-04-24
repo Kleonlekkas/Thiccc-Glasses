@@ -34,9 +34,8 @@ public class movePlayer : MonoBehaviour {
     //List of all our enemies
     List<MyObject> enemies;
 
-    //List of all our milk and orange crates
+    //List of all our milk
     List<MyObject> milkCrates;
-    List<MyObject> orangeCrates;
 
     public GameObject milkCrateObj;
     public GameObject orangeCrateObj;
@@ -57,7 +56,6 @@ public class movePlayer : MonoBehaviour {
         //has multiples. then we'll put those lists into one SUPER LIST
         enemies = new List<MyObject>();
         milkCrates = new List<MyObject>();
-        orangeCrates = new List<MyObject>();
 
         //Initialize map. this will be streamed in in the future
         //1 is player, 2 is durian, 3 is movable object, 4 is immovable object, 5 is goal
@@ -65,7 +63,7 @@ public class movePlayer : MonoBehaviour {
             { 0, 0, 0, 0, 5 },
             { 0, 0, 2, 0, 0 },
             { 0, 0, 0, 2, 0 },
-            { 0, 0, 0, 0, 0 },
+            { 0, 4, 0, 0, 0 },
             { 1, 0, 0, 0, 0 }
         };
 
@@ -124,7 +122,7 @@ public class movePlayer : MonoBehaviour {
                  
                 //Place orange crates
                 if (map[i, n] == 4)
-                    orangeCrates.Add(new MyObject(Instantiate(orangeCrateObj, new Vector3(i * scale, 0.0f, n * scale), orangeCrateObj.transform.rotation), n, i));
+                    Instantiate(orangeCrateObj, new Vector3(i * scale, 0.0f, n * scale), orangeCrateObj.transform.rotation);
 
                 //Place End
                 if (map[i, n] == 5)
@@ -153,75 +151,166 @@ public class movePlayer : MonoBehaviour {
 
     }//end update
 
-    void playerMoveAttempt(string direction) { 
+    void playerMoveAttempt(string direction) {
 
-		bool topBlocked = false;
-		bool bottomBlocked = false;
-		bool leftBlocked = false;
-		bool rightBlocked = false;
+        bool topBlocked = false;
+        bool bottomBlocked = false;
+        bool leftBlocked = false;
+        bool rightBlocked = false;
 
-		//Get length of first dimension
-		for (int i = 0; i < map.GetLength(0); i++)
-		{
-			//Get length of second dimension
-			for (int n = 0; n < map.GetLength(1); n++)
-			{
-				//I is vertical,
-				//N is horizontally across
-				//If its our player
-				if (map [i, n] == 1) {
-					//Left and Right side
-					if (n == 0) {
-						leftBlocked = true;
-					} else if (n == (map.GetLength(0) - 1)) {
-						rightBlocked = true;
-					}
-					//Top and Bottom
-					if (i == 0) {
-						topBlocked = true;
-					} else if (i == (map.GetLength(1) - 1)) {
-						bottomBlocked = true;
-					}
-				}
-			}
-		}
+        //Get length of first dimension
+        for (int i = 0; i < map.GetLength(0); i++)
+        {
+            //Get length of second dimension
+            for (int n = 0; n < map.GetLength(1); n++)
+            {
+                //I is vertical,
+                //N is horizontally across
+                //If its our player
+                if (map[i, n] == 1) {
+                    //Left and Right side
+                    if (n == 0) {
+                        leftBlocked = true;
+                    } else if (n == (map.GetLength(0) - 1)) {
+                        rightBlocked = true;
+                    }
+                    //Top and Bottom
+                    if (i == 0) {
+                        topBlocked = true;
+                    } else if (i == (map.GetLength(1) - 1)) {
+                        bottomBlocked = true;
+                    }
+
+                    //ORANGE CRATES
+                    //boundary check sides
+                    //If were all the way on the left, dont check for a block there, etc
+                    if (n > 0)
+                    {
+                        //orange crate to our left
+                        if (map[i, n - 1] == 4)
+                        {
+                            leftBlocked = true;
+                        }
+                        /*
+                        //If its a milk crate
+                        if (map[i, n - 1] == 3)
+                        {
+                            //check to see if we can check its left
+                            if (n > 1)
+                            {
+                                if (map[i, n - 2] != 0)
+                                {
+                                    leftBlocked = true;
+                                }
+                            }
+                        }
+                        */
+
+                    }
+                    if (n < map.GetLength(0) - 1)
+                    {
+                        if (map[i, n + 1] == 4)
+                        {
+                            rightBlocked = true;
+
+                        }
+                    }
+                    if (i > 0)
+                    {
+                        if (map[i - 1, n] == 4)
+                        {
+                            topBlocked = true;
+                        }
+                    }
+                    if (i < map.GetLength(1) - 1)
+                    {
+                        if (map[i + 1, n] == 4)
+                        {
+                            bottomBlocked = true;
+
+                        }
+                    }
+
+                    /* **THIS WONT WORK** need to check to see if collision with milk crate is imminent, or the direction theyre going on
+                     * otherwise this check will stop them regardless of whetehr or not theres a milk crate in between
+                    //MILK CRATES
+                    //this only handles the blocking, not the actual functionality
+                    //the furthest we'll ever have to check is the space after the milk crate,
+                    //if its occupied, the milk crate cant be pushed.
+                    if (n > 1)
+                    {
+                        if (map[i, n - 2] != 0)
+                        {
+                            leftBlocked = true;
+                        }
+                    }
+                    if (n < map.GetLength(0) - 2)
+                    {
+                        if (map[i, n + 2] != 0)
+                        {
+                            rightBlocked = true;
+
+                        }
+                    }
+                    if (i > 1)
+                    {
+                        if (map[i - 2, n] != 0)
+                        {
+                            topBlocked = true;
+                        }
+                    }
+                    if (i < map.GetLength(1) - 2)
+                    {
+                        if (map[i + 2, n] != 0)
+                        {
+                            bottomBlocked = true;
+
+                        }
+                    }
+                    */
+
+                }
+            }
+        }
 
 
         //The player wants to move up
         if (direction == "Up" && !topBlocked)
         {
-			moveObjectUp(myPlayerObj.theObject);
-			myPlayerObj.vertInd--;
+            moveObjectUp(myPlayerObj.theObject);
+            myPlayerObj.vertInd--;
         }
 
         //The player wants to move Down
         if (direction == "Down" && !bottomBlocked)
         {
-			moveObjectDown(myPlayerObj.theObject);
-			myPlayerObj.vertInd++;
+            moveObjectDown(myPlayerObj.theObject);
+            myPlayerObj.vertInd++;
         }
 
         //The player wants to move Left
         if (direction == "Left" && !leftBlocked)
         {
-			moveObjectLeft(myPlayerObj.theObject);
-			myPlayerObj.horzInd--;
+            moveObjectLeft(myPlayerObj.theObject);
+            myPlayerObj.horzInd--;
         }
 
         //The player wants to move Right
-		if (direction == "Right" && !rightBlocked)
+        if (direction == "Right" && !rightBlocked)
         {
-			moveObjectRight(myPlayerObj.theObject);
-			myPlayerObj.horzInd++;
+            moveObjectRight(myPlayerObj.theObject);
+            myPlayerObj.horzInd++;
         }
 
 
 
-		//Update map
-		updateMap (myPlayerObj.theObject.name);
+        //Update map
+        updateMap(myPlayerObj.theObject.name);
 
         //Update Durians
         updateDurians();
+
+        //Debug.Log("Players Location: " + myPlayerObj.vertInd + "," + myPlayerObj.horzInd);
 
         //printMap();
 
