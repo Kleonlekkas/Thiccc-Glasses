@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class movePlayer : MonoBehaviour {
 
@@ -28,6 +29,7 @@ public class movePlayer : MonoBehaviour {
 
 	//our custom class to hold it and its indices
 	private MyObject myPlayerObj;
+    private MyObject endObject;
 
     //List of all our enemies
     List<MyObject> enemies;
@@ -126,7 +128,7 @@ public class movePlayer : MonoBehaviour {
 
                 //Place End
                 if (map[i, n] == 5)
-					Instantiate (end, new Vector3(i * scale, 0.0f, n * scale), end.transform.rotation);
+                    endObject = new MyObject(Instantiate(end, new Vector3(i * scale, 0.0f, n * scale), end.transform.rotation), n, i);
             }
         }
     }
@@ -221,6 +223,8 @@ public class movePlayer : MonoBehaviour {
         //Update Durians
         updateDurians();
 
+        //printMap();
+
 
     }//end player move attempt
 
@@ -263,98 +267,134 @@ public class movePlayer : MonoBehaviour {
             bool shouldSkip = false;
 			//If the enemy and the player are in the same horizontal index, i.e, the same column
 			if (enemies [i].horzInd == myPlayerObj.horzInd) {
-				//Should check if in line of sight, we'll do that later
 				if (enemies [i].vertInd < myPlayerObj.vertInd) {
                     //Player is below enemy
                     ///Check if in line of sight, continue
-                    ///
-                    //Current line
-                    for (int x = 0; x < 4; x++)
+                    for (int j = enemies[i].vertInd + 1; j < myPlayerObj.vertInd; j++)
                     {
-                        Debug.Log("The row: " + map[x, enemies[i].horzInd].ToString());
-                    }
-                    for (int j = enemies[i].vertInd + 1; j < myPlayerObj.vertInd; j++) // works for 0 - 4
-                    {
-                        Debug.Log("Coordinates checked: " + j.ToString() + " , " + enemies[i].horzInd.ToString());
                         if (map[j, enemies[i].horzInd] != 0)
                         {
                             //Space is occupied
-                            Debug.Log("Vertical Checked: " + j.ToString());
                             shouldSkip = true;
                         }
                     }
                    if (shouldSkip)
                     {
-                        Debug.Log("Skipped!");
                         continue;
                     }
-                    Debug.Log(shouldSkip);
 					//move enemy down
 					moveObjectDown(enemies[i].theObject);
 
 					//change that enemies current position on the map to 0
-					map[enemies[i].horzInd, enemies[i].vertInd] = 0;
+					map[enemies[i].vertInd, enemies[i].horzInd] = 0;
 
 					//change the enemies personal index accordingly
 					enemies[i].vertInd++;
 
 					//update the new maps enemy position
-					map[enemies[i].horzInd, enemies[i].vertInd] = 2;
+					map[enemies[i].vertInd, enemies[i].horzInd] = 2;
 
 				} else if (enemies [i].vertInd > myPlayerObj.vertInd) {
-					//Player is above enemy
+                    //Player is above enemy
+                    ///Check if in line of sight, continue
 
-					//move enemy Up
-					moveObjectUp(enemies[i].theObject);
+                    for (int j = myPlayerObj.vertInd + 1; j < enemies[i].vertInd; j++)
+                    {
+                        
+                        if (map[j, enemies[i].horzInd] != 0)
+                        {
+                            //Space is occupied
+                            shouldSkip = true;
+                        }
+                    }
+                    if (shouldSkip)
+                    {
+                        Debug.Log("Skipped!");
+                        continue;
+                    }
+
+                    //move enemy Up
+                    moveObjectUp(enemies[i].theObject);
 
 					//change that enemies current position on the map to 0
-					map[enemies[i].horzInd, enemies[i].vertInd] = 0;
+					map[enemies[i].vertInd, enemies[i].horzInd] = 0;
 
 					//change the enemies personal index accordingly
 					enemies[i].vertInd--;
 
 					//update the new maps enemy position
-					map[enemies[i].horzInd, enemies[i].vertInd] = 2;
+					map[enemies[i].vertInd, enemies[i].horzInd] = 2;
 				}
 
 			} else if (enemies [i].vertInd == myPlayerObj.vertInd) {
 				//same row
 				if (enemies [i].horzInd < myPlayerObj.horzInd) {
-					//Player is right of enemy
+                    //Player is right of enemy
 
-					//move enemy Right
-					moveObjectRight(enemies[i].theObject);
+                    ///Check if in line of sight, continue
+                    for (int j = enemies[i].horzInd + 1; j < myPlayerObj.horzInd; j++)
+                    {
+                        if (map[enemies[i].vertInd, j] != 0)
+                        {
+                            //Space is occupied
+                            shouldSkip = true;
+                        }
+                    }
+                    if (shouldSkip)
+                    {
+                        continue;
+                    }
+
+                    //move enemy Right
+                    moveObjectRight(enemies[i].theObject);
 
 					//change that enemies current position on the map to 0
-					map[enemies[i].horzInd, enemies[i].vertInd] = 0;
+					map[enemies[i].vertInd, enemies[i].horzInd] = 0;
 
 					//change the enemies personal index accordingly
 					enemies[i].horzInd++;
 
 					//update the new maps enemy position
-					map[enemies[i].horzInd, enemies[i].vertInd] = 2;
+					map[enemies[i].vertInd, enemies[i].horzInd] = 2;
 
 				} else if (enemies [i].horzInd > myPlayerObj.horzInd) {
-					//Player is Left of Enemy
+                    //Player is Left of Enemy
 
-					//move enemy Left
-					moveObjectLeft(enemies[i].theObject);
+                    ///Check if in line of sight, continue
+                    //(int j = myPlayerObj.vertInd + 1; j < enemies[i].vertInd; j++)
+                    for (int j = myPlayerObj.horzInd + 1; j < enemies[i].horzInd; j++)
+                    {
+                        if (map[enemies[i].vertInd, j] != 0)
+                        {
+                            //Space is occupied
+                            shouldSkip = true;
+                        }
+                    }
+                    if (shouldSkip)
+                    {
+                        continue;
+                    }
+
+                    //move enemy Left
+                    moveObjectLeft(enemies[i].theObject);
 
 					//change that enemies current position on the map to 0
-					map[enemies[i].horzInd, enemies[i].vertInd] = 0;
+					map[enemies[i].vertInd, enemies[i].horzInd] = 0;
 
 					//change the enemies personal index accordingly
 					enemies[i].horzInd--;
 
 					//update the new maps enemy position
-					map[enemies[i].horzInd, enemies[i].vertInd] = 2;
+					map[enemies[i].vertInd, enemies[i].horzInd] = 2;
 				}
 
 			}
 
 			//Check if enemy is in the same space as the player. If so, they lose
 			if (enemies [i].horzInd == myPlayerObj.horzInd && enemies [i].vertInd == myPlayerObj.vertInd) {
-				Debug.Log ("Player Loses");
+                //Restart scene
+                //For some reason, light does not restart so scene gets darker
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 			}
 
 		}
@@ -384,7 +424,27 @@ public class movePlayer : MonoBehaviour {
 			//Assign players new spot
 			map[myPlayerObj.vertInd, myPlayerObj.horzInd] = 1;
 		}
+
+        //Check if player has hit the end
+        if (myPlayerObj.vertInd == endObject.vertInd && myPlayerObj.horzInd == endObject.horzInd)
+        {
+            //for now, reload scene again since we dont have another scene
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
 	}
+
+    //function to print out entire map, for debug purposes
+    void printMap()
+    {
+        for (int i = 0; i < map.GetLength(0); i++)
+        {
+            for (int n = 0; n < map.GetLength(1); n++)
+            {
+                Debug.Log("Position: " + i + "," + n + "Contents: " + map[i, n]);
+            }
+        }
+        
+    }
 
 
 }
