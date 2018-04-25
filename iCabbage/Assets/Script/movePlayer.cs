@@ -169,21 +169,6 @@ public class movePlayer : MonoBehaviour {
             playerMoveAttempt("Right");
         }
 
-        //hard-coded puzzle endings
-        if (SceneManager.GetActiveScene().name == "first_puzzle")
-        {
-            if(map[4, 4] == 1)
-            {
-                SceneManager.LoadScene("second_puzzle");
-            }
-        }
-        else if(SceneManager.GetActiveScene().name == "second_puzzle")
-        {
-            if (map[5, 5] == 1)
-            {
-
-            }
-        }
     }//end update
 
     void playerMoveAttempt(string direction) {
@@ -557,6 +542,8 @@ public class movePlayer : MonoBehaviour {
 
 			//load the next scene in line
 			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+            // *NOTE* Error if last level.
         }
 	}
 
