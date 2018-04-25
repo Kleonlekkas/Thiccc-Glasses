@@ -44,7 +44,7 @@ public class movePlayer : MonoBehaviour {
     public GameObject end;
 
     //Scale that objects will be moved by.
-    private float scale;
+    public float scale;
     //Map to hold coordinates of our objects
     private int[,] map;
     //creates a string to read level design file
@@ -82,18 +82,19 @@ public class movePlayer : MonoBehaviour {
             //Initialize map. this will be streamed in in the future
             //1 is player, 2 is durian, 3 is movable object, 4 is immovable object, 5 is goal
             map = new int[,]{
-            { 0, 0, 2, 0, 5 },
-            { 0, 0, 0, 0, 3 },
-            { 3, 0, 0, 0, 0 },
-            { 0, 0, 0, 0, 2 },
-            { 1, 0, 0, 3, 2 }
+            { 0, 0, 2, 0, 0, 5 },
+            { 0, 0, 0, 0, 0, 4 },
+            { 0, 0, 0, 0, 0, 0 },
+            { 4, 0, 0, 0, 0, 2 },
+			{ 0, 0, 0, 0, 0, 0 },
+            { 1, 0, 0, 4, 2, 0 }
             };
         }
 
-        scale = 3.0f;
+        //scale = 3.0f;
 
         //Set its position to be the center of the grid we made
-		m_Camera.transform.position = new Vector3(scale * (map.GetLength(0) / 2), (scale * 5), scale * (map.GetLength(0) / 2));
+		m_Camera.transform.position = new Vector3(scale * (map.GetLength(0) / 2), (scale  * (5 + ((map.GetLength(0) % 5)))), scale * (map.GetLength(0) / 2));
 
         vertWall.localScale = new Vector3(0.1f, 0.1f, scale * (map.GetLength(0)));
         horzWall.localScale = new Vector3(scale * (map.GetLength(1)), 0.1f, 0.1f);
@@ -101,7 +102,8 @@ public class movePlayer : MonoBehaviour {
         //Draw in the walls
         for (int i = 0; i < map.GetLength(0); i++)
         {
-            Instantiate(vertWall, new Vector3((i * scale) - scale / 2, 0, scale * (map.GetLength(1) / 2)), vertWall.transform.rotation);
+            Transform tempWall = Instantiate(vertWall, new Vector3((i * scale) - scale / 2, 0, scale * (map.GetLength(1) / 2)), vertWall.transform.rotation);
+			//tempWall.localScale = newVector3 ();
         }
         for (int n = 0; n < map.GetLength(1); n++)
         {
@@ -112,7 +114,7 @@ public class movePlayer : MonoBehaviour {
             Instantiate(horzWall, new Vector3(scale * (map.GetLength(1) / 2), 0, ((map.GetLength(1)) * scale) - scale / 2), horzWall.transform.rotation);
 
             Transform myFloor = Instantiate(floor, new Vector3(scale * (map.GetLength(0) / 2), 0.0f, scale * (map.GetLength(1) / 2)), floor.transform.rotation);
-            myFloor.localScale = new Vector3(scale * (map.GetLength(0)), 0.1f, scale * (map.GetLength(1)));
+		myFloor.localScale = new Vector3 ((scale * (map.GetLength (0)) + scale * (map.GetLength(0) % 5)), 0.1f, (scale * (map.GetLength (1))) + scale * (map.GetLength(0) % 5));
             myFloor.position = new Vector3(myFloor.position.x, myFloor.position.y - 0.25f, myFloor.position.z);
  
 
@@ -536,7 +538,10 @@ public class movePlayer : MonoBehaviour {
         if (myPlayerObj.vertInd == endObject.vertInd && myPlayerObj.horzInd == endObject.horzInd)
         {
             //for now, reload scene again since we dont have another scene
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+			//load the next scene in line
+			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
 	}
 

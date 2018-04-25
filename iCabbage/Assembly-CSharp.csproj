@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Script\movePlayer.cs" />
+     <None Include="Assets\Script\test.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>F:/Unitee/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

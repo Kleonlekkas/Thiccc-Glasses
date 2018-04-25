@@ -623,4 +623,5 @@ MonoBehaviour:
     type: 2}
   enemy: {fileID: 1963085667879000, guid: cb15d2bbe2690f446aec39e63a35472e, type: 2}
   end: {fileID: 1050563680495464, guid: 5bc55aea4bb73384ba6671087b1ce98f, type: 2}
-  test: 
+  scale: 3
+  sLevels: 
