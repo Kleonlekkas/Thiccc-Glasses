@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class movePlayer : MonoBehaviour {
 
@@ -42,12 +43,12 @@ public class movePlayer : MonoBehaviour {
     public GameObject enemy;
     public GameObject end;
 
-    //Map to hold coordinates of our objects
-    private int[,] map;
     //Scale that objects will be moved by.
     private float scale;
-    //creates a string
-    public string test;
+    //Map to hold coordinates of our objects
+    private int[,] map;
+    //creates a string to read level design file
+    public string sLevels;
 
     // Use this for initialization
     void Start ()
@@ -56,16 +57,38 @@ public class movePlayer : MonoBehaviour {
         //has multiples. then we'll put those lists into one SUPER LIST
         enemies = new List<MyObject>();
         milkCrates = new List<MyObject>();
+        
+        //array to make current map
+        map = new int[,] { };
 
-        //Initialize map. this will be streamed in in the future
-        //1 is player, 2 is durian, 3 is movable object, 4 is immovable object, 5 is goal
-        map = new int[,]{
+        //get levels from file
+        sLevels = System.IO.File.ReadAllText("Assets/Script/test.txt");
+        string[] levels = sLevels.Split('_');
+        
+        if (SceneManager.GetActiveScene().name == "first_puzzle")
+        {
+            //Initialize map. this will be streamed in in the future
+            //1 is player, 2 is durian, 3 is movable object, 4 is immovable object, 5 is goal
+            map = new int[,]{
             { 0, 0, 0, 0, 5 },
             { 0, 0, 2, 0, 0 },
             { 0, 0, 0, 2, 0 },
-            { 0, 4, 0, 0, 0 },
+            { 0, 0, 0, 0, 0 },
             { 1, 0, 0, 0, 0 }
-        };
+            };
+        }
+        if (SceneManager.GetActiveScene().name == "second_puzzle")
+        {
+            //Initialize map. this will be streamed in in the future
+            //1 is player, 2 is durian, 3 is movable object, 4 is immovable object, 5 is goal
+            map = new int[,]{
+            { 0, 0, 2, 0, 5 },
+            { 0, 0, 0, 0, 3 },
+            { 3, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 2 },
+            { 1, 0, 0, 3, 2 }
+            };
+        }
 
         scale = 3.0f;
 
@@ -105,11 +128,6 @@ public class movePlayer : MonoBehaviour {
                 {
 					myPlayerObj = new MyObject(GameObject.FindGameObjectWithTag("Player"), n, i);
 					myPlayerObj.theObject.transform.position = new Vector3(i * scale, 0.0f, n * scale);
-
-                    //assigns the text file to the string
-                    test = System.IO.File.ReadAllText("Assets/Script/test.txt");
-                    //writes the string in the console
-                    Debug.Log (test);
                 }
 
                 //Place enemies
