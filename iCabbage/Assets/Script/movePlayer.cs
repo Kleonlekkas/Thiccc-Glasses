@@ -187,17 +187,24 @@ public class movePlayer : MonoBehaviour {
                 //I is vertical,
                 //N is horizontally across
                 //If its our player
-                if (map[i, n] == 1) {
+                if (map[i, n] == 1)
+                {
                     //Left and Right side
-                    if (n == 0) {
+                    if (n == 0)
+                    {
                         leftBlocked = true;
-                    } else if (n == (map.GetLength(0) - 1)) {
+                    }
+                    else if (n == (map.GetLength(0) - 1))
+                    {
                         rightBlocked = true;
                     }
                     //Top and Bottom
-                    if (i == 0) {
+                    if (i == 0)
+                    {
                         topBlocked = true;
-                    } else if (i == (map.GetLength(1) - 1)) {
+                    }
+                    else if (i == (map.GetLength(1) - 1))
+                    {
                         bottomBlocked = true;
                     }
 
@@ -211,10 +218,14 @@ public class movePlayer : MonoBehaviour {
                         {
                             leftBlocked = true;
                         }
-                        /*
+
                         //If its a milk crate
                         if (map[i, n - 1] == 3)
                         {
+                            if (myPlayerObj.horzInd == 1)
+                            {
+                                leftBlocked = true;
+                            }
                             //check to see if we can check its left
                             if (n > 1)
                             {
@@ -224,15 +235,32 @@ public class movePlayer : MonoBehaviour {
                                 }
                             }
                         }
-                        */
+
 
                     }
                     if (n < map.GetLength(0) - 1)
                     {
-                        if (map[i, n + 1] == 4)
+                        //orange 
+                        if (map[i, n + 1] == 4) 
                         {
                             rightBlocked = true;
 
+                        }
+                        //If its a milk crate - CHECKING RIGHT SIDE
+                        if (map[i, n + 1] == 3)
+                        {
+                            if (myPlayerObj.horzInd == map.GetLength(1)-2)
+                            {
+                                rightBlocked = true;  
+                            }
+                            //check to see if we can check its right
+                            if (n < map.GetLength(0) - 2)
+                            {
+                                if (map[i, n + 2] != 0)
+                                {
+                                    rightBlocked = true;
+                                }
+                            }
                         }
                     }
                     if (i > 0)
@@ -241,13 +269,45 @@ public class movePlayer : MonoBehaviour {
                         {
                             topBlocked = true;
                         }
+                        //If its a milk crate
+                        if (map[i-1, n] == 3)
+                        {
+                            if (myPlayerObj.vertInd == 1)
+                            {
+                                topBlocked = true;
+                            }
+                            //check to see if we can check its left
+                            if (i > 1)
+                            {
+                                if (map[i - 2, n] != 0)
+                                {
+                                    topBlocked = true;
+                                }
+                            }
+                        }
                     }
                     if (i < map.GetLength(1) - 1)
                     {
-                        if (map[i + 1, n] == 4)
+                        if (map[i+1, n] == 4)
                         {
                             bottomBlocked = true;
 
+                        }
+                        //If its a milk crate
+                        if (map[i+1, n] == 3)
+                        {
+                            if (myPlayerObj.vertInd == map.GetLength(1) - 2)
+                            {
+                                bottomBlocked = true;
+                            }
+                            //check to see if we can check its left
+                            if (i < map.GetLength(0) - 2)
+                            {
+                                if (map[i + 2, n] != 0)
+                                {
+                                    bottomBlocked = true;
+                                }
+                            }
                         }
                     }
 
@@ -293,35 +353,72 @@ public class movePlayer : MonoBehaviour {
             }
         }
 
+                //The player wants to move up
+                if (direction == "Up" && !topBlocked)
+                {
+                    for (int i = 0; i < milkCrates.Count; i++){
+                        if (milkCrates[i].horzInd == myPlayerObj.horzInd){
+                            if (milkCrates[i].vertInd == myPlayerObj.vertInd-1){
+                                moveObjectUp(milkCrates[i].theObject);
+                                map[milkCrates[i].vertInd, milkCrates[i].horzInd] = 0;
+                                milkCrates[i].vertInd--;
+                                map[milkCrates[i].vertInd, milkCrates[i].horzInd] = 3;
+                            }
+                        }
+                    }
+                    moveObjectUp(myPlayerObj.theObject);
+                    myPlayerObj.vertInd--;
+                }
+                //The player wants to move Down
+                if (direction == "Down" && !bottomBlocked)
+                {
+                    for (int i = 0; i < milkCrates.Count; i++){
+                        if (milkCrates[i].horzInd == myPlayerObj.horzInd){
+                            if (milkCrates[i].vertInd == myPlayerObj.vertInd + 1){
+                                moveObjectDown(milkCrates[i].theObject);
+                                map[milkCrates[i].vertInd, milkCrates[i].horzInd] = 0;
+                                milkCrates[i].vertInd++;
+                                map[milkCrates[i].vertInd, milkCrates[i].horzInd] = 3;
+                            }
+                        }
+                    }
+                    moveObjectDown(myPlayerObj.theObject);
+                    myPlayerObj.vertInd++;
+                }
 
-        //The player wants to move up
-        if (direction == "Up" && !topBlocked)
-        {
-            moveObjectUp(myPlayerObj.theObject);
-            myPlayerObj.vertInd--;
-        }
+                //The player wants to move Left
+                if (direction == "Left" && !leftBlocked)
+                {
+                    for (int i = 0; i < milkCrates.Count; i++) {
+                        if (milkCrates[i].horzInd == myPlayerObj.horzInd - 1) {
+                            if (milkCrates[i].vertInd == myPlayerObj.vertInd) {
+                                moveObjectLeft(milkCrates[i].theObject);
+                                map[milkCrates[i].vertInd, milkCrates[i].horzInd] = 0;
+                                milkCrates[i].horzInd--;
+                                map[milkCrates[i].vertInd, milkCrates[i].horzInd] = 3;
+                             }
+                        }
+                     }
+                    moveObjectLeft(myPlayerObj.theObject);
+                    myPlayerObj.horzInd--;
+                }
 
-        //The player wants to move Down
-        if (direction == "Down" && !bottomBlocked)
-        {
-            moveObjectDown(myPlayerObj.theObject);
-            myPlayerObj.vertInd++;
-        }
-
-        //The player wants to move Left
-        if (direction == "Left" && !leftBlocked)
-        {
-            moveObjectLeft(myPlayerObj.theObject);
-            myPlayerObj.horzInd--;
-        }
-
-        //The player wants to move Right
-        if (direction == "Right" && !rightBlocked)
-        {
+                //The player wants to move Right
+                if (direction == "Right" && !rightBlocked)
+                {
+                    for (int i = 0; i < milkCrates.Count; i++){
+                        if (milkCrates[i].horzInd == myPlayerObj.horzInd+1){
+                            if (milkCrates[i].vertInd == myPlayerObj.vertInd) {
+                                moveObjectRight(milkCrates[i].theObject);
+                                map[milkCrates[i].vertInd, milkCrates[i].horzInd] = 0;
+                                milkCrates[i].horzInd++;
+                                map[milkCrates[i].vertInd, milkCrates[i].horzInd] = 3;
+                            }
+                        }
+                    }
             moveObjectRight(myPlayerObj.theObject);
-            myPlayerObj.horzInd++;
-        }
-
+                    myPlayerObj.horzInd++;
+                }
 
 
         //Update map
