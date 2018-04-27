@@ -44,7 +44,8 @@ public class movePlayer : MonoBehaviour {
     public GameObject end;
 
     //Scale that objects will be moved by.
-    public float scale;
+    private float scale;
+    private float camDistance;
     //Map to hold coordinates of our objects
     private int[,] map;
     //creates a string to read level design file
@@ -76,11 +77,11 @@ public class movePlayer : MonoBehaviour {
             { 0, 0, 0, 0, 0 },
             { 1, 0, 0, 0, 0 }
             };
+            scale = 3.0f;
+            camDistance = (scale * (5 + ((map.GetLength(0) % 5))));
         }
         if (SceneManager.GetActiveScene().name == "second_puzzle")
         {
-            //Initialize map. this will be streamed in in the future
-            //1 is player, 2 is durian, 3 is movable object, 4 is immovable object, 5 is goal
             map = new int[,]{
             { 0, 0, 2, 0, 0, 5 },
             { 0, 0, 0, 0, 0, 4 },
@@ -89,12 +90,31 @@ public class movePlayer : MonoBehaviour {
 			{ 0, 0, 0, 0, 0, 0 },
             { 1, 0, 0, 4, 2, 0 }
             };
+            scale = 3.0f;
+            camDistance = (scale * 7);
+        }
+        if (SceneManager.GetActiveScene().name == "third_puzzle")
+        {
+            map = new int[,]{
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 5 },
+            { 0, 0, 0, 2, 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 2, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 2, 0, 2, 0, 4, 0, 0, 0 },
+            { 2, 0, 0, 3, 0, 0, 0, 0, 0, 0 },
+            { 4, 3, 0, 0, 3, 0, 0, 0, 2, 0 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 2 },
+            { 0, 4, 0, 0, 0, 0, 0, 0, 0, 0 },
+            { 1, 0, 4, 2, 0, 0, 0, 0, 0, 0 }
+            };
+            scale = 3.0f;
+            camDistance = (scale * 10);
         }
 
         //scale = 3.0f;
 
         //Set its position to be the center of the grid we made
-		m_Camera.transform.position = new Vector3(scale * (map.GetLength(0) / 2), (scale  * (5 + ((map.GetLength(0) % 5)))), scale * (map.GetLength(0) / 2));
+        m_Camera.transform.position = new Vector3(scale * (map.GetLength(0) / 2), camDistance, scale * (map.GetLength(0) / 2));
 
         vertWall.localScale = new Vector3(0.1f, 0.1f, scale * (map.GetLength(0)));
         horzWall.localScale = new Vector3(scale * (map.GetLength(1)), 0.1f, 0.1f);
@@ -114,7 +134,7 @@ public class movePlayer : MonoBehaviour {
             Instantiate(horzWall, new Vector3(scale * (map.GetLength(1) / 2), 0, ((map.GetLength(1)) * scale) - scale / 2), horzWall.transform.rotation);
 
             Transform myFloor = Instantiate(floor, new Vector3(scale * (map.GetLength(0) / 2), 0.0f, scale * (map.GetLength(1) / 2)), floor.transform.rotation);
-		myFloor.localScale = new Vector3 ((scale * (map.GetLength (0)) + scale * (map.GetLength(0) % 5)), 0.1f, (scale * (map.GetLength (1))) + scale * (map.GetLength(0) % 5));
+		    myFloor.localScale = new Vector3 ((scale * (map.GetLength (0)) + scale * (map.GetLength(0) % 5)), 0.1f, (scale * (map.GetLength (1))) + scale * (map.GetLength(0) % 5));
             myFloor.position = new Vector3(myFloor.position.x, myFloor.position.y - 0.25f, myFloor.position.z);
  
 
@@ -640,9 +660,11 @@ public class movePlayer : MonoBehaviour {
 			//load the next scene in line
 			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
-            // *NOTE* Error if last level.
+            // *NOTE* Error if last level. Will have to do something about that. lol
         }
 	}
+
+    //Utility Functions
 
     //function to print out entire map, for debug purposes
     void printMap()
@@ -657,6 +679,11 @@ public class movePlayer : MonoBehaviour {
         
     }
 
+    //Lerping function for moving blocks
+    float lerp(float v0, float v1, float t)
+    {
+        return (1 - t) * v0 + t * v1;
+    }
 
 }
 
