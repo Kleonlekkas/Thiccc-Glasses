@@ -45,6 +45,7 @@ public class movePlayer : MonoBehaviour {
 
     //Scale that objects will be moved by.
     private float scale;
+    private float scaleBack;
     private float camDistance;
     //Map to hold coordinates of our objects
     private int[,] map;
@@ -78,6 +79,7 @@ public class movePlayer : MonoBehaviour {
             { 1, 0, 0, 0, 0 }
             };
             scale = 3.0f;
+            scaleBack = 0.0f;
             camDistance = (scale * (5 + ((map.GetLength(0) % 5))));
         }
         if (SceneManager.GetActiveScene().name == "second_puzzle")
@@ -91,6 +93,7 @@ public class movePlayer : MonoBehaviour {
             { 1, 0, 0, 4, 2, 0 }
             };
             scale = 3.0f;
+            scaleBack = 1.5f;
             camDistance = (scale * 7);
         }
         if (SceneManager.GetActiveScene().name == "third_puzzle")
@@ -108,13 +111,14 @@ public class movePlayer : MonoBehaviour {
             { 1, 0, 4, 2, 0, 0, 0, 0, 0, 0 }
             };
             scale = 3.0f;
+            scaleBack = 1.5f;
             camDistance = (scale * 10);
         }
 
         //scale = 3.0f;
 
         //Set its position to be the center of the grid we made
-        m_Camera.transform.position = new Vector3(scale * (map.GetLength(0) / 2), camDistance, scale * (map.GetLength(0) / 2));
+        m_Camera.transform.position = new Vector3(scale * (map.GetLength(0) / 2) - scaleBack, camDistance, scale * (map.GetLength(0) / 2) - scaleBack);
 
         vertWall.localScale = new Vector3(0.1f, 0.1f, scale * (map.GetLength(0)));
         horzWall.localScale = new Vector3(scale * (map.GetLength(1)), 0.1f, 0.1f);
@@ -122,18 +126,18 @@ public class movePlayer : MonoBehaviour {
         //Draw in the walls
         for (int i = 0; i < map.GetLength(0); i++)
         {
-            Transform tempWall = Instantiate(vertWall, new Vector3((i * scale) - scale / 2, 0, scale * (map.GetLength(1) / 2)), vertWall.transform.rotation);
+            Transform tempWall = Instantiate(vertWall, new Vector3((i * scale) - scale / 2, 0, scale * (map.GetLength(1) / 2) - scaleBack), vertWall.transform.rotation);
 			//tempWall.localScale = newVector3 ();
         }
         for (int n = 0; n < map.GetLength(1); n++)
         {
-            Instantiate(horzWall, new Vector3(scale * (map.GetLength(0) / 2), 0, (n * scale) - scale / 2), horzWall.transform.rotation);
+            Instantiate(horzWall, new Vector3(scale * (map.GetLength(0) / 2) - scaleBack, 0, (n * scale) - scale / 2), horzWall.transform.rotation);
         }
 
-            Instantiate(vertWall, new Vector3(((map.GetLength(0)) * scale) - scale / 2, 0, scale * (map.GetLength(0) / 2)), vertWall.transform.rotation);
-            Instantiate(horzWall, new Vector3(scale * (map.GetLength(1) / 2), 0, ((map.GetLength(1)) * scale) - scale / 2), horzWall.transform.rotation);
+            Instantiate(vertWall, new Vector3(((map.GetLength(0)) * scale) - scale / 2, 0, scale * (map.GetLength(0) / 2) - scaleBack), vertWall.transform.rotation);
+            Instantiate(horzWall, new Vector3(scale * (map.GetLength(1) / 2) - scaleBack, 0, ((map.GetLength(1)) * scale) - scale / 2), horzWall.transform.rotation);
 
-            Transform myFloor = Instantiate(floor, new Vector3(scale * (map.GetLength(0) / 2), 0.0f, scale * (map.GetLength(1) / 2)), floor.transform.rotation);
+            Transform myFloor = Instantiate(floor, new Vector3(scale * (map.GetLength(0) / 2) - scaleBack, 0.0f, scale * (map.GetLength(1) / 2) - scaleBack), floor.transform.rotation);
 		    myFloor.localScale = new Vector3 ((scale * (map.GetLength (0)) + scale * (map.GetLength(0) % 5)), 0.1f, (scale * (map.GetLength (1))) + scale * (map.GetLength(0) % 5));
             myFloor.position = new Vector3(myFloor.position.x, myFloor.position.y - 0.25f, myFloor.position.z);
  
