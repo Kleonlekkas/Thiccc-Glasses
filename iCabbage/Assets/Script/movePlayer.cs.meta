@@ -1,11 +1,19 @@
 fileFormatVersion: 2
 guid: 07b85bf32ea821b4fb2da5894b10d10d
-timeCreated: 1523725577
-licenseType: Free
+timeCreated: 1525385168
+licenseType: Pro
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - m_Camera: {instanceID: 0}
+  - vertWall: {instanceID: 0}
+  - horzWall: {instanceID: 0}
+  - floor: {instanceID: 0}
+  - milkCrateObj: {instanceID: 0}
+  - orangeCrateObj: {instanceID: 0}
+  - enemy: {instanceID: 0}
+  - end: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

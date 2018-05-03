@@ -292,7 +292,7 @@ MonoBehaviour:
   vertWall: {fileID: 4097375611008120, guid: edfe5a478075e314aac2775d41607e67, type: 2}
   horzWall: {fileID: 4833001576302412, guid: 35b964cfbe15ad142af7a070bfc18e89, type: 2}
   floor: {fileID: 4858267348445938, guid: 01d710eebe03d754ea31331531cd5b21, type: 2}
-  milkCrateObj: {fileID: 1246621065670830, guid: 0fb38b06f0309e54083ae4f670bcd8e4,
+  milkCrateObj: {fileID: 1110351229936498, guid: 689ae0dc093754b4ca325aafe57eee02,
     type: 2}
   orangeCrateObj: {fileID: 1298048331817154, guid: b0fb0df90e09ac04d9ce67b8bfa9541a,
     type: 2}

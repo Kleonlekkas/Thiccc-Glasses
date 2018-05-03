@@ -1,0 +1,222 @@
+fileFormatVersion: 2
+guid: ec3225850ef47754fbe18acdcc86cf9a
+timeCreated: 1525383050
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: back_leaf
+    100002: back_leaf_top
+    100004: base
+    100006: body
+    100008: cabbage
+    100010: head
+    100012: Head_leaf_M
+    100014: hips
+    100016: //RootNode
+    100018: joint10
+    100020: joint11
+    100022: joint12
+    100024: joint13
+    100026: joint14
+    100028: joint15
+    100030: joint16
+    100032: joint17
+    100034: joint18
+    100036: joint19
+    100038: joint20
+    100040: joint21
+    100042: joint22
+    100044: joint23
+    100046: joint24
+    100048: joint25
+    100050: joint26
+    100052: joint27
+    100054: joint28
+    100056: joint29
+    100058: joint30
+    100060: joint31
+    100062: joint32
+    100064: joint33
+    100066: joint34
+    100068: joint35
+    100070: joint36
+    100072: joint9
+    100074: L_ankle
+    100076: L_elbow
+    100078: L_foot
+    100080: L_hand
+    100082: L_knee
+    100084: L_leaf_b
+    100086: L_leaf_t
+    100088: L_leg
+    100090: L_shoulder
+    100092: L_toe
+    100094: L_toe_front
+    100096: L_top_leg
+    100098: L_wrist
+    100100: R_ankle
+    100102: R_elbow
+    100104: R_foot
+    100106: R_hand
+    100108: R_knee
+    100110: R_leaf_b
+    100112: R_leaf_t
+    100114: R_leg
+    100116: R_shoulder
+    100118: R_toe
+    100120: R_toe_front
+    100122: R_top_leg
+    100124: R_wrist
+    100126: top_head
+    400000: back_leaf
+    400002: back_leaf_top
+    400004: base
+    400006: body
+    400008: cabbage
+    400010: head
+    400012: Head_leaf_M
+    400014: hips
+    400016: //RootNode
+    400018: joint10
+    400020: joint11
+    400022: joint12
+    400024: joint13
+    400026: joint14
+    400028: joint15
+    400030: joint16
+    400032: joint17
+    400034: joint18
+    400036: joint19
+    400038: joint20
+    400040: joint21
+    400042: joint22
+    400044: joint23
+    400046: joint24
+    400048: joint25
+    400050: joint26
+    400052: joint27
+    400054: joint28
+    400056: joint29
+    400058: joint30
+    400060: joint31
+    400062: joint32
+    400064: joint33
+    400066: joint34
+    400068: joint35
+    400070: joint36
+    400072: joint9
+    400074: L_ankle
+    400076: L_elbow
+    400078: L_foot
+    400080: L_hand
+    400082: L_knee
+    400084: L_leaf_b
+    400086: L_leaf_t
+    400088: L_leg
+    400090: L_shoulder
+    400092: L_toe
+    400094: L_toe_front
+    400096: L_top_leg
+    400098: L_wrist
+    400100: R_ankle
+    400102: R_elbow
+    400104: R_foot
+    400106: R_hand
+    400108: R_knee
+    400110: R_leaf_b
+    400112: R_leaf_t
+    400114: R_leg
+    400116: R_shoulder
+    400118: R_toe
+    400120: R_toe_front
+    400122: R_top_leg
+    400124: R_wrist
+    400126: top_head
+    4300000: cabbage
+    7400000: Idke
+    9500000: //RootNode
+    13700000: cabbage
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cabbage_T
+    second: {fileID: 2100000, guid: 9787d360600d4d4489f5b552b00ea410, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
