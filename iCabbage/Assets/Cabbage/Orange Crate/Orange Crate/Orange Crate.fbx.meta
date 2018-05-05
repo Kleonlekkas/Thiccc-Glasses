@@ -1,0 +1,177 @@
+fileFormatVersion: 2
+guid: 319b0b7c700504843b9fffe6fde9d997
+timeCreated: 1525542336
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Crate1
+    100002: Orange
+    100004: //RootNode
+    100006: Orange1
+    100008: Orange10
+    100010: Orange11
+    100012: Orange12
+    100014: Orange13
+    100016: Orange2
+    100018: Orange3
+    100020: Orange4
+    100022: Orange5
+    100024: Orange6
+    100026: Orange7
+    100028: Orange8
+    100030: Orange9
+    400000: Crate1
+    400002: Orange
+    400004: //RootNode
+    400006: Orange1
+    400008: Orange10
+    400010: Orange11
+    400012: Orange12
+    400014: Orange13
+    400016: Orange2
+    400018: Orange3
+    400020: Orange4
+    400022: Orange5
+    400024: Orange6
+    400026: Orange7
+    400028: Orange8
+    400030: Orange9
+    2300000: Crate1
+    2300002: Orange
+    2300004: Orange1
+    2300006: Orange10
+    2300008: Orange11
+    2300010: Orange12
+    2300012: Orange13
+    2300014: Orange2
+    2300016: Orange3
+    2300018: Orange4
+    2300020: Orange5
+    2300022: Orange6
+    2300024: Orange7
+    2300026: Orange8
+    2300028: Orange9
+    3300000: Crate1
+    3300002: Orange
+    3300004: Orange1
+    3300006: Orange10
+    3300008: Orange11
+    3300010: Orange12
+    3300012: Orange13
+    3300014: Orange2
+    3300016: Orange3
+    3300018: Orange4
+    3300020: Orange5
+    3300022: Orange6
+    3300024: Orange7
+    3300026: Orange8
+    3300028: Orange9
+    4300000: Crate1
+    4300002: Orange
+    4300004: Orange1
+    4300006: Orange2
+    4300008: Orange3
+    4300010: Orange4
+    4300012: Orange5
+    4300014: Orange6
+    4300016: Orange7
+    4300018: Orange8
+    4300020: Orange9
+    4300022: Orange10
+    4300024: Orange11
+    4300026: Orange12
+    4300028: Orange13
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Skin__Color_jpg
+    second: {fileID: 2100000, guid: e4f499ba695f1e94181ddb49ada2942c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stub__Color_jpg
+    second: {fileID: 2100000, guid: e4f499ba695f1e94181ddb49ada2942c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: 335ffbdaff93b094699a6dc7b376782b, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

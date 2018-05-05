@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2015
+# Visual Studio 2017
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iCabbage", "iCabbage.csproj", "{FEF03E99-78FF-A5AD-00B6-CE9BA86BF1D9}"
 EndProject
 Global

@@ -375,7 +375,7 @@ MonoBehaviour:
   floor: {fileID: 4858267348445938, guid: 01d710eebe03d754ea31331531cd5b21, type: 2}
   milkCrateObj: {fileID: 1110351229936498, guid: 689ae0dc093754b4ca325aafe57eee02,
     type: 2}
-  orangeCrateObj: {fileID: 1298048331817154, guid: b0fb0df90e09ac04d9ce67b8bfa9541a,
+  orangeCrateObj: {fileID: 1317297197690364, guid: 93335584a67e68743b2e5b5533e2d9e7,
     type: 2}
   enemy: {fileID: 1963085667879000, guid: cb15d2bbe2690f446aec39e63a35472e, type: 2}
   end: {fileID: 1050563680495464, guid: 5bc55aea4bb73384ba6671087b1ce98f, type: 2}
