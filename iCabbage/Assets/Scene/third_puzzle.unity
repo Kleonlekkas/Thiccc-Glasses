@@ -161,6 +161,18 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 955360809}
+    - target: {fileID: 114708530074508480, guid: 2e329c75756e33945acb8f72b4953faa,
+        type: 2}
+      propertyPath: orangeCrateObj
+      value: 
+      objectReference: {fileID: 1317297197690364, guid: 93335584a67e68743b2e5b5533e2d9e7,
+        type: 2}
+    - target: {fileID: 114708530074508480, guid: 2e329c75756e33945acb8f72b4953faa,
+        type: 2}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 1805886607544316, guid: 596afc35357043f4ebadea84d6aae600,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2e329c75756e33945acb8f72b4953faa, type: 2}
   m_IsPrefabParent: 0
