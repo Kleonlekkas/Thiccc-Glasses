@@ -178,18 +178,23 @@ public class movePlayer : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
-        if (Input.GetKeyDown(KeyCode.W)) {
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            myPlayerObj.theObject.transform.rotation = Quaternion.Euler(0, 270, 0);
             playerMoveAttempt("Up");
         } else if (Input.GetKeyDown(KeyCode.A))
         {
+            myPlayerObj.theObject.transform.rotation = Quaternion.Euler(0, 180, 0);
             playerMoveAttempt("Left");
         }
         else if (Input.GetKeyDown(KeyCode.S))
         {
+            myPlayerObj.theObject.transform.rotation = Quaternion.Euler(0, 90, 0);
             playerMoveAttempt("Down");
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
+            myPlayerObj.theObject.transform.rotation = Quaternion.Euler(0, 0, 0);
             playerMoveAttempt("Right");
         }
 
