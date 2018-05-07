@@ -339,45 +339,6 @@ public class movePlayer : MonoBehaviour {
                             }
                         }
                     }
-
-                    /* **THIS WONT WORK** need to check to see if collision with milk crate is imminent, or the direction theyre going on
-                     * otherwise this check will stop them regardless of whetehr or not theres a milk crate in between
-                    //MILK CRATES
-                    //this only handles the blocking, not the actual functionality
-                    //the furthest we'll ever have to check is the space after the milk crate,
-                    //if its occupied, the milk crate cant be pushed.
-                    if (n > 1)
-                    {
-                        if (map[i, n - 2] != 0)
-                        {
-                            leftBlocked = true;
-                        }
-                    }
-                    if (n < map.GetLength(0) - 2)
-                    {
-                        if (map[i, n + 2] != 0)
-                        {
-                            rightBlocked = true;
-
-                        }
-                    }
-                    if (i > 1)
-                    {
-                        if (map[i - 2, n] != 0)
-                        {
-                            topBlocked = true;
-                        }
-                    }
-                    if (i < map.GetLength(1) - 2)
-                    {
-                        if (map[i + 2, n] != 0)
-                        {
-                            bottomBlocked = true;
-
-                        }
-                    }
-                    */
-
                 }
             }
         }
@@ -519,6 +480,7 @@ public class movePlayer : MonoBehaviour {
                     }
 					//move enemy down
 					moveObjectDown(enemies[i].theObject);
+					enemies[i].theObject.transform.rotation = Quaternion.Euler(0, 90, 0);
 
 					//change that enemies current position on the map to 0
 					map[enemies[i].vertInd, enemies[i].horzInd] = 0;
@@ -544,11 +506,12 @@ public class movePlayer : MonoBehaviour {
                     }
                     if (shouldSkip)
                     {
-                        Debug.Log("Skipped!");
+                        //Debug.Log("Skipped!");
                         continue;
                     }
 
                     //move enemy Up
+					enemies[i].theObject.transform.rotation = Quaternion.Euler(0, 270, 0);
                     moveObjectUp(enemies[i].theObject);
 
 					//change that enemies current position on the map to 0
@@ -581,6 +544,7 @@ public class movePlayer : MonoBehaviour {
                     }
 
                     //move enemy Right
+					enemies[i].theObject.transform.rotation = Quaternion.Euler(0, 0, 0);
                     moveObjectRight(enemies[i].theObject);
 
 					//change that enemies current position on the map to 0
@@ -611,6 +575,7 @@ public class movePlayer : MonoBehaviour {
                     }
 
                     //move enemy Left
+					enemies[i].theObject.transform.rotation = Quaternion.Euler(0, 180, 0);
                     moveObjectLeft(enemies[i].theObject);
 
 					//change that enemies current position on the map to 0
