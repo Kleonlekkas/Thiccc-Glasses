@@ -658,13 +658,17 @@ public class movePlayer : MonoBehaviour {
         //Check if player has hit the end
         if (myPlayerObj.vertInd == endObject.vertInd && myPlayerObj.horzInd == endObject.horzInd)
         {
-            //for now, reload scene again since we dont have another scene
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            if (SceneManager.GetActiveScene().buildIndex < SceneManager.sceneCountInBuildSettings - 1)
+            {
+                //load the next scene in line
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            } else
+            {
+                //Take us to main menu, no more levels left
+                SceneManager.LoadScene("main_menu");
+            }
 
-			//load the next scene in line
-			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
-            // *NOTE* Error if last level. Will have to do something about that. lol
         }
 	}
 
